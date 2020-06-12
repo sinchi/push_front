@@ -16,6 +16,8 @@ import { loginUser,apiError } from '../../store/actions';
 import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
 
+import { withNamespaces } from 'react-i18next';
+
 class Login extends Component {
 
     constructor(props) {
@@ -38,7 +40,7 @@ class Login extends Component {
     }
 
     render() {
-
+        const { t } = this.props;
         return (
             <React.Fragment>
                 <div className="home-btn d-none d-sm-block">
@@ -53,8 +55,8 @@ class Login extends Component {
                                         <Row>
                                             <Col className="col-7">
                                                 <div className="text-primary p-4">
-                                                    <h5 className="text-primary">Welcome Back !</h5>
-                                                    <p>Sign in to continue to Push Notification System.</p>
+              <h5 className="text-primary">{t('login.welcome_back')}</h5>
+                                                    <p>{t('login.sign_in_to_continue')}.</p>
                                                 </div>
                                             </Col>
                                             <Col className="col-5 align-self-end">
@@ -79,32 +81,31 @@ class Login extends Component {
                                                 {this.props.error && this.props.error ? <Alert color="danger">{this.props.error}</Alert> : null}
 
                                                 <div className="form-group">
-                                                    <AvField name="email" label="Email" value="admin@themesbrand.com" className="form-control" placeholder="Enter email" type="email" required />
+                                                    <AvField name="email" label={t('login.email')} value="admin@themesbrand.com" className="form-control" placeholder="Enter email" type="email" required />
                                                 </div>
 
                                                 <div className="form-group">
-                                                    <AvField name="password" label="Password" value="123456" type="password" required placeholder="Enter Password" />
+                                                    <AvField name="password" label={t('login.password')} value="123456" type="password" required placeholder="Enter Password" />
                                                 </div>
 
                                                 <div className="custom-control custom-checkbox">
                                                     <input type="checkbox" className="custom-control-input" id="customControlInline" />
-                                                    <label className="custom-control-label" htmlFor="customControlInline">Remember me</label>
+        <label className="custom-control-label" htmlFor="customControlInline">{t('login.remember_me')}</label>
                                                 </div>
 
                                                 <div className="mt-3">
-                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
+        <button className="btn btn-primary btn-block waves-effect waves-light" type="submit">{t('login.login')}</button>
                                                 </div>
 
                                                 <div className="mt-4 text-center">
-                                                    <Link to="/forgot-password" className="text-muted"><i className="mdi mdi-lock mr-1"></i> Forgot your password?</Link>
+        <Link to="/forgot-password" className="text-muted"><i className="mdi mdi-lock mr-1"></i> {t('login.forgot_password')}</Link>
                                                 </div>
                                             </AvForm>
                                         </div>
                                     </CardBody>
                                 </Card>
                                 <div className="mt-5 text-center">
-                                    <p>Don't have an account ? <Link to="register" className="font-weight-medium text-primary"> Signup now </Link> </p>
-                                    <p>© {new Date().getFullYear()} Skote. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                    <p>{t('login.not_account')} <Link to="register" className="font-weight-medium text-primary"> {t('login.signup_now')} </Link> </p>
                                 </div>
                             </Col>
                         </Row>
@@ -120,5 +121,5 @@ const mapStatetoProps = state => {
     return { error };
 }
 
-export default withRouter(connect(mapStatetoProps, { loginUser,apiError })(Login));
+export default withRouter(connect(mapStatetoProps, { loginUser,apiError })(withNamespaces()(Login)));
 
