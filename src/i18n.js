@@ -7,6 +7,7 @@ import translationIT from './locales/it/translation.json';
 import translationRS from './locales/rs/translation.json';
 import translationSP from './locales/sp/translation.json';
 import translationENG from './locales/eng/translation.json';
+import translationFR from './locales/fr/translation.json';
 
 // the translations
 const resources = {
@@ -24,6 +25,9 @@ const resources = {
   },
    eng: {
     translation: translationENG
+  },
+  fr: {
+    translation: translationFR
   }
 };
 
@@ -32,8 +36,8 @@ i18n
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "en",
-    fallbackLng: "en", // use en if detected lng is not available
+    lng: "fr",
+    fallbackLng: "fr", // use en if detected lng is not available
 
     keySeparator: false, // we do not use keys in form messages.welcome
 
