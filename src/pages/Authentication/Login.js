@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Row, Col, CardBody, Card, Alert,Container } from "reactstrap";
+import { Row, Col, CardBody, Card, Alert, Container } from 'reactstrap';
 
 // Redux
 import { connect } from 'react-redux';
@@ -10,116 +10,168 @@ import { withRouter, Link } from 'react-router-dom';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
 // actions
-import { loginUser,apiError } from '../../store/actions';
+import { loginUser, apiError } from '../../store/actions';
 
 // import images
-import profile from "../../assets/images/profile-img.png";
-import logo from "../../assets/images/logo.svg";
+import profile from '../../assets/images/profile-img.png';
+import logo from '../../assets/images/logo.svg';
 
 import { withNamespaces } from 'react-i18next';
 
 class Login extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-
-        // handleValidSubmit
-        this.handleValidSubmit = this.handleValidSubmit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
 
     // handleValidSubmit
-    handleValidSubmit(event, values) {
-        this.props.loginUser(values, this.props.history);
-    }
+    this.handleValidSubmit = this.handleValidSubmit.bind(this);
+  }
 
-    componentDidMount()
-    {
-        this.props.apiError("");
-        console.log(process.env.REACT_APP_DEFAULTAUTH);
-    }
+  // handleValidSubmit
+  handleValidSubmit(event, values) {
+    this.props.loginUser(values, this.props.history);
+  }
 
-    render() {
-        const { t } = this.props;
-        return (
-            <React.Fragment>
-                <div className="home-btn d-none d-sm-block">
-                    <Link to="/" className="text-dark"><i className="fas fa-home h2"></i></Link>
+  componentDidMount() {
+    this.props.apiError('');
+    console.log(process.env.REACT_APP_DEFAULTAUTH);
+  }
+
+  render() {
+    const { t } = this.props;
+    return (
+      <React.Fragment>
+        <div className="home-btn d-none d-sm-block">
+          <Link to="/" className="text-dark">
+            <i className="fas fa-home h2"></i>
+          </Link>
+        </div>
+        <div className="account-pages my-5 pt-sm-5">
+          <Container>
+            <Row className="justify-content-center">
+              <Col md={8} lg={6} xl={5}>
+                <Card className="overflow-hidden">
+                  <div className="bg-soft-primary">
+                    <Row>
+                      <Col className="col-7">
+                        <div className="text-primary p-4">
+                          <h5 className="text-primary">
+                            {t('login.welcome_back')}
+                          </h5>
+                          <p>{t('login.sign_in_to_continue')}.</p>
+                        </div>
+                      </Col>
+                      <Col className="col-5 align-self-end">
+                        <img src={profile} alt="" className="img-fluid" />
+                      </Col>
+                    </Row>
+                  </div>
+                  <CardBody className="pt-0">
+                    <div>
+                      <Link to="/">
+                        <div className="avatar-md profile-user-wid mb-4">
+                          <span className="avatar-title rounded-circle bg-light">
+                            <img
+                              src={logo}
+                              alt=""
+                              className="rounded-circle"
+                              height="34"
+                            />
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="p-2">
+                      <AvForm
+                        className="form-horizontal"
+                        onValidSubmit={this.handleValidSubmit}
+                      >
+                        {this.props.error && this.props.error ? (
+                          <Alert color="danger">{this.props.error}</Alert>
+                        ) : null}
+
+                        <div className="form-group">
+                          <AvField
+                            name="email"
+                            label={t('login.email')}
+                            value="admin@themesbrand.com"
+                            className="form-control"
+                            placeholder="Enter email"
+                            type="email"
+                            required
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <AvField
+                            name="password"
+                            label={t('login.password')}
+                            value="123456"
+                            type="password"
+                            required
+                            placeholder="Enter Password"
+                          />
+                        </div>
+
+                        <div className="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="customControlInline"
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="customControlInline"
+                          >
+                            {t('login.remember_me')}
+                          </label>
+                        </div>
+
+                        <div className="mt-3">
+                          <button
+                            className="btn btn-primary btn-block waves-effect waves-light"
+                            type="submit"
+                          >
+                            {t('login.login')}
+                          </button>
+                        </div>
+
+                        <div className="mt-4 text-center">
+                          <Link to="/forgot-password" className="text-muted">
+                            <i className="mdi mdi-lock mr-1"></i>{' '}
+                            {t('login.forgot_password')}
+                          </Link>
+                        </div>
+                      </AvForm>
+                    </div>
+                  </CardBody>
+                </Card>
+                <div className="mt-5 text-center">
+                  <p>
+                    {t('login.not_account')}{' '}
+                    <Link
+                      to="register"
+                      className="font-weight-medium text-primary"
+                    >
+                      {' '}
+                      {t('login.signup_now')}{' '}
+                    </Link>{' '}
+                  </p>
                 </div>
-                <div className="account-pages my-5 pt-sm-5">
-                    <Container>
-                        <Row className="justify-content-center">
-                            <Col md={8} lg={6} xl={5}>
-                                <Card className="overflow-hidden">
-                                    <div className="bg-soft-primary">
-                                        <Row>
-                                            <Col className="col-7">
-                                                <div className="text-primary p-4">
-              <h5 className="text-primary">{t('login.welcome_back')}</h5>
-                                                    <p>{t('login.sign_in_to_continue')}.</p>
-                                                </div>
-                                            </Col>
-                                            <Col className="col-5 align-self-end">
-                                                <img src={profile} alt="" className="img-fluid" />
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                    <CardBody className="pt-0">
-                                        <div>
-                                            <Link to="/">
-                                                <div className="avatar-md profile-user-wid mb-4">
-                                                    <span className="avatar-title rounded-circle bg-light">
-                                                        <img src={logo} alt="" className="rounded-circle" height="34" />
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                        <div className="p-2">
-
-                                            <AvForm className="form-horizontal" onValidSubmit={this.handleValidSubmit}>
-
-                                                {this.props.error && this.props.error ? <Alert color="danger">{this.props.error}</Alert> : null}
-
-                                                <div className="form-group">
-                                                    <AvField name="email" label={t('login.email')} value="admin@themesbrand.com" className="form-control" placeholder="Enter email" type="email" required />
-                                                </div>
-
-                                                <div className="form-group">
-                                                    <AvField name="password" label={t('login.password')} value="123456" type="password" required placeholder="Enter Password" />
-                                                </div>
-
-                                                <div className="custom-control custom-checkbox">
-                                                    <input type="checkbox" className="custom-control-input" id="customControlInline" />
-        <label className="custom-control-label" htmlFor="customControlInline">{t('login.remember_me')}</label>
-                                                </div>
-
-                                                <div className="mt-3">
-        <button className="btn btn-primary btn-block waves-effect waves-light" type="submit">{t('login.login')}</button>
-                                                </div>
-
-                                                <div className="mt-4 text-center">
-        <Link to="/forgot-password" className="text-muted"><i className="mdi mdi-lock mr-1"></i> {t('login.forgot_password')}</Link>
-                                                </div>
-                                            </AvForm>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                                <div className="mt-5 text-center">
-                                    <p>{t('login.not_account')} <Link to="register" className="font-weight-medium text-primary"> {t('login.signup_now')} </Link> </p>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-            </React.Fragment>
-        );
-    }
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
-const mapStatetoProps = state => {
-    const { error } = state.Login;
-    return { error };
-}
+const mapStatetoProps = (state) => {
+  const { error } = state.Login;
+  return { error };
+};
 
-export default withRouter(connect(mapStatetoProps, { loginUser,apiError })(withNamespaces()(Login)));
-
+export default withRouter(
+  connect(mapStatetoProps, { loginUser, apiError })(withNamespaces()(Login))
+);
