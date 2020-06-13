@@ -46,7 +46,7 @@ class Login extends Component {
   }
 
   render() {
-    const { t, loading } = this.props;
+    const { t, loading, error } = this.props;
     return (
       <React.Fragment>
         <div className="home-btn d-none d-sm-block">
@@ -94,8 +94,8 @@ class Login extends Component {
                         className="form-horizontal"
                         onValidSubmit={this.handleValidSubmit}
                       >
-                        {this.props.error && this.props.error ? (
-                          <Alert color="danger">{this.props.error}</Alert>
+                        {error && error ? (
+                          <Alert color="danger">{t(`errors.${error}`)}</Alert>
                         ) : null}
 
                         <div className="form-group">

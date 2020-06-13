@@ -7,11 +7,9 @@ import { loginSuccess, apiError } from './actions';
 //Include Both Helper File with needed methods
 import { postLogin } from '../../../helpers/fakebackend_helper';
 
-const baseURL = 'http://192.168.43.204';
-
 function* loginUser({ payload: { user, history } }) {
   try {
-    const response = yield call(postLogin, `${baseURL}/api/login_check`, {
+    const response = yield call(postLogin, '/login_check', {
       username: user.username,
       password: user.password,
     });

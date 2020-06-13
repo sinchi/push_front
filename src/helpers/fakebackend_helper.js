@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/axios';
 
 // Gets the logged in user data from local session
 const getLoggedInUser = () => {
@@ -45,17 +45,13 @@ const postRegister = (url, data) => {
 };
 
 // Login Method
-const postLogin = (url, data) => {
-  const formData = new FormData();
-  formData.set('username', data.username);
-  formData.set('password', data.password);
-  const config = {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  };
+const postLogin = (url, { username, password }) => {
+  const params = new URLSearchParams();
+  params.append('username', username);
+  params.append('password', password);
+
   return axios
-    .post(url, formData, config)
+    .post(url, params)
     .then((response) => {
       if (response.status === 401 || response.status === 500)
         throw response.data;
@@ -63,7 +59,7 @@ const postLogin = (url, data) => {
     })
     .catch((err) => {
       console.log({ err: err.toJSON() });
-      throw err[1];
+      throw err.response.status;
     });
 };
 

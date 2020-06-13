@@ -12,6 +12,9 @@
     "forgot_password": "Mot de passe oublié?",
     "signup_now": "Créer un compte maintenant",
     "not_account": "Vous n'avez pas un compte ?"
+  },
+  "errors": {
+    "401": "Vous n'avez pas l'authtorisation pour accéder à cet endroit!"
   }
 
 }
