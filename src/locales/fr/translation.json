@@ -14,8 +14,10 @@
     "not_account": "Vous n'avez pas un compte ?"
   },
   "dashboard": {
-    "companies": "Entreprises",
-    "applications": "Applications",
+    "company": "Entreprise",
+    "company_plural": "Entreprises",
+    "application": "Application",
+    "application_plural": "Applications",
     "home": "Acceuil"
   },
   "errors": {

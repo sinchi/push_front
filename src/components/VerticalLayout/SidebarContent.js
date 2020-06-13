@@ -88,10 +88,14 @@ class SidebarContent extends Component {
                   <Link to="/dashboard">{t('dashboard.home')}</Link>
                 </li>
                 <li>
-                  <Link to="/#">{t('dashboard.companies')}</Link>
+                  <Link to="/company">
+                    {t('dashboard.company', { count: 3 })}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/#">{this.props.t('dashboard.applications')}</Link>
+                  <Link to="/#">
+                    {this.props.t('dashboard.application', { count: 3 })}
+                  </Link>
                 </li>
               </ul>
             </li>
