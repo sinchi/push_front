@@ -1,4 +1,5 @@
 {
+  "back": "Revenir",
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",
@@ -18,7 +19,17 @@
     "company_plural": "Entreprises",
     "application": "Application",
     "application_plural": "Applications",
-    "home": "Acceuil"
+    "home": "Acceuil",
+    "company_grid": "Liste des entreprises mode (grid)"
+  },
+  "companies": {
+    "add_company": "Ajouter une entreprise",
+    "company_name": "Nom",
+    "company_placeholder": "Veuillez Saisir le nom d'entreprise",
+    "address": "Adresse",
+    "address_placeholder": "Veuillez Saisir l'adresse d'entreprise",
+    "enabled": "Active",
+    "add_button": "Ajouter"
   },
   "errors": {
     "login": {

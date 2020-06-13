@@ -11,11 +11,11 @@ import ForgetPwd from '../pages/Authentication/ForgetPassword';
 import Dashboard from '../pages/Dashboard/index';
 
 // Company
-import Company from '../pages/Companies/index';
+import Companies from '../pages/Companies';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: Dashboard },
-  { path: '/company', component: Company },
+  { path: '/companies', component: Companies },
 
   // this route should be at the end of all other routes
   { path: '/', exact: true, component: () => <Redirect to="/dashboard" /> },

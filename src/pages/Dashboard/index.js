@@ -77,7 +77,7 @@ class Dashboard extends Component {
             {/* Render Breadcrumb */}
             <Breadcrumbs
               title={this.props.t('Dashboard')}
-              breadcrumbItem={this.props.t('Dashboard')}
+              breadcrumbItem={this.props.t('dashboard.home')}
             />
 
             <Row>
