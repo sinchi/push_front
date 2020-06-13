@@ -94,8 +94,10 @@ class Login extends Component {
                         className="form-horizontal"
                         onValidSubmit={this.handleValidSubmit}
                       >
-                        {error && error ? (
-                          <Alert color="danger">{t(`errors.${error}`)}</Alert>
+                        {error ? (
+                          <Alert color="danger">
+                            {t(`errors.login.${error.message}`)}
+                          </Alert>
                         ) : null}
 
                         <div className="form-group">
@@ -106,6 +108,7 @@ class Login extends Component {
                             className="form-control"
                             placeholder={t('login.placeholder_username')}
                             required
+                            errorMessage={t('errors.login.username')}
                           />
                         </div>
 
@@ -117,6 +120,7 @@ class Login extends Component {
                             type="password"
                             required
                             placeholder={t('login.placeholder_password')}
+                            errorMessage={t('errors.login.password')}
                           />
                         </div>
 

@@ -14,7 +14,11 @@
     "not_account": "Vous n'avez pas un compte ?"
   },
   "errors": {
-    "401": "Vous n'avez pas l'authtorisation pour accéder à cet endroit!"
+    "login": {
+      "auth_failed": "Votre Login ou Mot de passe est incorrect !",
+      "username": "Veuillez saisir votre username",
+      "password": "Veuillez saisir votre mot de passe"
+    }
   }
 
 }
