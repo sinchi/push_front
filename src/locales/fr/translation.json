@@ -13,6 +13,10 @@
     "signup_now": "Créer un compte maintenant",
     "not_account": "Vous n'avez pas un compte ?"
   },
+  "dashboard": {
+    "companies": "Entreprises",
+    "applications": "Applications"
+  },
   "errors": {
     "login": {
       "auth_failed": "Votre Login ou Mot de passe est incorrect !",
