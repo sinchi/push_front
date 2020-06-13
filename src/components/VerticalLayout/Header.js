@@ -26,6 +26,13 @@ class Header extends Component {
     this.state = {
       isSearch: false,
     };
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+  /**
+   * Toggle sidebar
+   */
+  toggleMenu() {
+    this.props.toggleMenuCallback();
   }
 
   render() {
