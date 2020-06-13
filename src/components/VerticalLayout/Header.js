@@ -172,66 +172,6 @@ class Header extends Component {
 
               <LanguageDropdown />
 
-              <Dropdown
-                className="d-none d-lg-inline-block ml-1"
-                isOpen={this.state.socialDrp}
-                toggle={() => {
-                  this.setState({ socialDrp: !this.state.socialDrp });
-                }}
-              >
-                <DropdownToggle
-                  className="btn header-item noti-icon waves-effect"
-                  tag="button"
-                >
-                  <i className="bx bx-customize"></i>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-menu-lg" right>
-                  <div className="px-lg-2">
-                    <Row className="no-gutters">
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={github} alt="Github" />
-                          <span>GitHub</span>
-                        </Link>
-                      </Col>
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={bitbucket} alt="bitbucket" />
-                          <span>Bitbucket</span>
-                        </Link>
-                      </Col>
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={dribbble} alt="dribbble" />
-                          <span>Dribbble</span>
-                        </Link>
-                      </Col>
-                    </Row>
-
-                    <Row className="no-gutters">
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={dropbox} alt="dropbox" />
-                          <span>Dropbox</span>
-                        </Link>
-                      </Col>
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={mail_chimp} alt="mail_chimp" />
-                          <span>Mail Chimp</span>
-                        </Link>
-                      </Col>
-                      <Col>
-                        <Link className="dropdown-icon-item" to="#">
-                          <img src={slack} alt="slack" />
-                          <span>Slack</span>
-                        </Link>
-                      </Col>
-                    </Row>
-                  </div>
-                </DropdownMenu>
-              </Dropdown>
-
               <div className="dropdown d-none d-lg-inline-block ml-1">
                 <button
                   type="button"
