@@ -2,13 +2,11 @@ import { takeEvery, fork, put, all, call } from 'redux-saga/effects';
 
 // Login Redux States
 import { LOGIN_USER, LOGOUT_USER } from './actionTypes';
-import { loginSuccess, logoutUserSuccess, apiError } from './actions';
+import { loginSuccess, apiError } from './actions';
 
 //Include Both Helper File with needed methods
-import { getFirebaseBackend } from '../../../helpers/firebase_helper';
 import { postLogin } from '../../../helpers/fakebackend_helper';
 
-const fireBaseBackend = getFirebaseBackend();
 const baseURL = 'http://192.168.43.204';
 
 function* loginUser({ payload: { user, history } }) {
@@ -22,6 +20,7 @@ function* loginUser({ payload: { user, history } }) {
 
     history.push('/dashboard');
   } catch (error) {
+    console.log({ error });
     yield put(apiError(error));
   }
 }

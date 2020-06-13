@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
-import { Row, Col, CardBody, Card, Alert, Container } from 'reactstrap';
+import {
+  Row,
+  Col,
+  CardBody,
+  Card,
+  Alert,
+  Container,
+  Spinner,
+} from 'reactstrap';
 
 // Redux
 import { connect } from 'react-redux';
@@ -38,7 +46,7 @@ class Login extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, loading } = this.props;
     return (
       <React.Fragment>
         <div className="home-btn d-none d-sm-block">
@@ -116,8 +124,10 @@ class Login extends Component {
                           <button
                             className="btn btn-primary btn-block waves-effect waves-light"
                             type="submit"
+                            disabled={loading}
                           >
                             {t('login.login')}
+                            {loading && <Spinner color="info" size="sm" />}
                           </button>
                         </div>
 
@@ -153,8 +163,8 @@ class Login extends Component {
 }
 
 const mapStatetoProps = (state) => {
-  const { error } = state.Login;
-  return { error };
+  const { error, loading } = state.Login;
+  return { error, loading };
 };
 
 export default withRouter(

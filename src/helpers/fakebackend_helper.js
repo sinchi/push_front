@@ -62,6 +62,7 @@ const postLogin = (url, { username, password }) => {
       return response.data;
     })
     .catch((err) => {
+      console.log({ err: err.toJSON() });
       throw err[1];
     });
 };
