@@ -85,7 +85,7 @@ class SidebarContent extends Component {
               </Link>
               <ul className="sub-menu" aria-expanded="false">
                 <li>
-                  <Link to="/dashboard">{t('Default')}</Link>
+                  <Link to="/dashboard">{t('dashboard.home')}</Link>
                 </li>
                 <li>
                   <Link to="/#">{t('dashboard.companies')}</Link>

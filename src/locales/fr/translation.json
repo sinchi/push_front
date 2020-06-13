@@ -15,7 +15,8 @@
   },
   "dashboard": {
     "companies": "Entreprises",
-    "applications": "Applications"
+    "applications": "Applications",
+    "home": "Acceuil"
   },
   "errors": {
     "login": {
