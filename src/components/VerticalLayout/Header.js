@@ -1,43 +1,43 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
-import { Row, Col } from "reactstrap";
+import { connect } from 'react-redux';
+import { Row, Col } from 'reactstrap';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // Reactstrap
-import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 // Import menuDropdown
-import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
-import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
-import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
+import LanguageDropdown from '../CommonForBoth/TopbarDropdown/LanguageDropdown';
+import NotificationDropdown from '../CommonForBoth/TopbarDropdown/NotificationDropdown';
+import ProfileMenu from '../CommonForBoth/TopbarDropdown/ProfileMenu';
 
-import megamenuImg from "../../assets/images/megamenu-img.png";
-import logo from "../../assets/images/logo.svg";
-import logoLightPng from "../../assets/images/logo-light.png";
-import logoLightSvg from "../../assets/images/logo-light.svg";
-import logoDark from "../../assets/images/logo-dark.png";
+import megamenuImg from '../../assets/images/megamenu-img.png';
+import logo from '../../assets/images/logo.svg';
+import logoLightPng from '../../assets/images/logo-light.png';
+import logoLightSvg from '../../assets/images/logo-light.svg';
+import logoDark from '../../assets/images/logo-dark.png';
 
 // import images
-import github from "../../assets/images/brands/github.png";
-import bitbucket from "../../assets/images/brands/bitbucket.png";
-import dribbble from "../../assets/images/brands/dribbble.png";
-import dropbox from "../../assets/images/brands/dropbox.png";
-import mail_chimp from "../../assets/images/brands/mail_chimp.png";
-import slack from "../../assets/images/brands/slack.png";
+import github from '../../assets/images/brands/github.png';
+import bitbucket from '../../assets/images/brands/bitbucket.png';
+import dribbble from '../../assets/images/brands/dribbble.png';
+import dropbox from '../../assets/images/brands/dropbox.png';
+import mail_chimp from '../../assets/images/brands/mail_chimp.png';
+import slack from '../../assets/images/brands/slack.png';
 
 //i18n
 import { withNamespaces } from 'react-i18next';
 
 // Redux Store
-import { toggleRightSidebar } from "../../store/actions";
+import { toggleRightSidebar } from '../../store/actions';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSearch: false
+      isSearch: false,
     };
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleRightbar = this.toggleRightbar.bind(this);
@@ -56,7 +56,6 @@ class Header extends Component {
   toggleRightbar() {
     this.props.toggleRightSidebar();
   }
-
 
   toggleFullscreen() {
     if (
@@ -111,163 +110,59 @@ class Header extends Component {
                 </Link>
               </div>
 
-              <button type="button" onClick={this.toggleMenu} className="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+              <button
+                type="button"
+                onClick={this.toggleMenu}
+                className="btn btn-sm px-3 font-size-16 header-item waves-effect"
+                id="vertical-menu-btn"
+              >
                 <i className="fa fa-fw fa-bars"></i>
               </button>
 
               <form className="app-search d-none d-lg-block">
                 <div className="position-relative">
-                  <input type="text" className="form-control" placeholder={this.props.t('Search') + "..."} />
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={this.props.t('Search') + '...'}
+                  />
                   <span className="bx bx-search-alt"></span>
                 </div>
               </form>
-
-              <Dropdown className="dropdown-mega d-none d-lg-block ml-2" isOpen={this.state.megaMenuDrp} toggle={() => { this.setState({ megaMenuDrp: !this.state.megaMenuDrp }) }}>
-                <DropdownToggle className="btn header-item waves-effect" caret tag="button"> {this.props.t('Mega Menu')} {" "}
-                  <i className="mdi mdi-chevron-down"></i></DropdownToggle>
-                <DropdownMenu className="dropdown-megamenu">
-                  <Row>
-                    <Col sm={8}>
-                      <Row>
-                        <Col md={4}>
-                          <h5 className="font-size-14 mt-0">{this.props.t('UI Components')}</h5>
-                          <ul className="list-unstyled megamenu-list">
-                            <li>
-                              <Link to="#">{this.props.t('Lightbox')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Range Slider')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Sweet Alert')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Rating')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Forms')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Tables')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Charts')}</Link>
-                            </li>
-                          </ul>
-                        </Col>
-
-                        <Col md={4}>
-                          <h5 className="font-size-14 mt-0">{this.props.t('Applications')}</h5>
-                          <ul className="list-unstyled megamenu-list">
-                            <li>
-                              <Link to="#">{this.props.t('Ecommerce')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Calendar')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Email')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Projects')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Tasks')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Contacts')}</Link>
-                            </li>
-                          </ul>
-                        </Col>
-
-                        <Col md={4}>
-                          <h5 className="font-size-14 mt-0">{this.props.t('Extra Pages')}</h5>
-                          <ul className="list-unstyled megamenu-list">
-                            <li>
-                              <Link to="#">{this.props.t('Light Sidebar')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Compact Sidebar')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">
-                                {this.props.t('Horizontal layout')}
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="#">  {this.props.t('Maintenance')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Coming Soon')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Timeline')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('FAQs')}</Link>
-                            </li>
-                          </ul>
-                        </Col>
-                      </Row>
-                    </Col>
-                    <Col sm={4}>
-                      <Row>
-                        <Col sm={6}>
-                          <h5 className="font-size-14 mt-0">{this.props.t('UI Components')}</h5>
-                          <ul className="list-unstyled megamenu-list">
-                            <li>
-                              <Link to="#">{this.props.t('Lightbox')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Range Slider')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Sweet Alert')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Rating')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Forms')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Tables')}</Link>
-                            </li>
-                            <li>
-                              <Link to="#">{this.props.t('Charts')}</Link>
-                            </li>
-                          </ul>
-                        </Col>
-
-                        <Col sm={5}>
-                          <div>
-                            <img
-                              src={megamenuImg}
-                              alt=""
-                              className="img-fluid mx-auto d-block"
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </DropdownMenu>
-              </Dropdown>
             </div>
             <div className="d-flex">
               <div className="dropdown d-inline-block d-lg-none ml-2">
-                <button onClick={() => { this.setState({ isSearch: !this.state.isSearch }); }} type="button" className="btn header-item noti-icon waves-effect" id="page-header-search-dropdown">
+                <button
+                  onClick={() => {
+                    this.setState({ isSearch: !this.state.isSearch });
+                  }}
+                  type="button"
+                  className="btn header-item noti-icon waves-effect"
+                  id="page-header-search-dropdown"
+                >
                   <i className="mdi mdi-magnify"></i>
                 </button>
-                <div className={this.state.isSearch ? "dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 show" : "dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"}
-                  aria-labelledby="page-header-search-dropdown">
-
+                <div
+                  className={
+                    this.state.isSearch
+                      ? 'dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 show'
+                      : 'dropdown-menu dropdown-menu-lg dropdown-menu-right p-0'
+                  }
+                  aria-labelledby="page-header-search-dropdown"
+                >
                   <form className="p-3">
                     <div className="form-group m-0">
                       <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Search ..." aria-label="Recipient's username" />
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Search ..."
+                          aria-label="Recipient's username"
+                        />
                         <div className="input-group-append">
-                          <button className="btn btn-primary" type="submit"><i className="mdi mdi-magnify"></i></button>
+                          <button className="btn btn-primary" type="submit">
+                            <i className="mdi mdi-magnify"></i>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -277,8 +172,17 @@ class Header extends Component {
 
               <LanguageDropdown />
 
-              <Dropdown className="d-none d-lg-inline-block ml-1" isOpen={this.state.socialDrp} toggle={() => { this.setState({ socialDrp: !this.state.socialDrp }) }}>
-                <DropdownToggle className="btn header-item noti-icon waves-effect" tag="button">
+              <Dropdown
+                className="d-none d-lg-inline-block ml-1"
+                isOpen={this.state.socialDrp}
+                toggle={() => {
+                  this.setState({ socialDrp: !this.state.socialDrp });
+                }}
+              >
+                <DropdownToggle
+                  className="btn header-item noti-icon waves-effect"
+                  tag="button"
+                >
                   <i className="bx bx-customize"></i>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-lg" right>
@@ -329,7 +233,12 @@ class Header extends Component {
               </Dropdown>
 
               <div className="dropdown d-none d-lg-inline-block ml-1">
-                <button type="button" onClick={this.toggleFullscreen} className="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                <button
+                  type="button"
+                  onClick={this.toggleFullscreen}
+                  className="btn header-item noti-icon waves-effect"
+                  data-toggle="fullscreen"
+                >
                   <i className="bx bx-fullscreen"></i>
                 </button>
               </div>
@@ -337,12 +246,17 @@ class Header extends Component {
               <NotificationDropdown />
               <ProfileMenu />
 
-              <div onClick={this.toggleRightbar} className="dropdown d-inline-block">
-                <button type="button" className="btn header-item noti-icon right-bar-toggle waves-effect">
+              <div
+                onClick={this.toggleRightbar}
+                className="dropdown d-inline-block"
+              >
+                <button
+                  type="button"
+                  className="btn header-item noti-icon right-bar-toggle waves-effect"
+                >
                   <i className="bx bx-cog bx-spin"></i>
                 </button>
               </div>
-
             </div>
           </div>
         </header>
@@ -351,9 +265,11 @@ class Header extends Component {
   }
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   const { layoutType } = state.Layout;
   return { layoutType };
 };
 
-export default connect(mapStatetoProps, { toggleRightSidebar })(withNamespaces()(Header));
+export default connect(mapStatetoProps, { toggleRightSidebar })(
+  withNamespaces()(Header)
+);
