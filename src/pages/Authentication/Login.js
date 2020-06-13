@@ -92,12 +92,11 @@ class Login extends Component {
 
                         <div className="form-group">
                           <AvField
-                            name="email"
-                            label={t('login.email')}
-                            value="admin@themesbrand.com"
+                            name="username"
+                            label={t('login.username')}
+                            value="ayoub"
                             className="form-control"
-                            placeholder="Enter email"
-                            type="email"
+                            placeholder={t('login.placeholder_username')}
                             required
                           />
                         </div>
@@ -106,25 +105,11 @@ class Login extends Component {
                           <AvField
                             name="password"
                             label={t('login.password')}
-                            value="123456"
+                            value="123456789"
                             type="password"
                             required
-                            placeholder="Enter Password"
+                            placeholder={t('login.placeholder_password')}
                           />
-                        </div>
-
-                        <div className="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customControlInline"
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="customControlInline"
-                          >
-                            {t('login.remember_me')}
-                          </label>
                         </div>
 
                         <div className="mt-3">

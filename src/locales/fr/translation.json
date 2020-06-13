@@ -1,10 +1,12 @@
-
 {
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",
     "email": "Email",
+    "username": "Login",
+    "placeholder_username": "Saisir votre Login",
     "password": "Mot de passe",
+    "placeholder_password": "Saisir votre mot de passe",
     "remember_me": "Me Souvient",
     "login": "Authentifier",
     "forgot_password": "Mot de passe oublié?",
