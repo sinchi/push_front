@@ -45,10 +45,10 @@ const postRegister = (url, data) => {
 };
 
 // Login Method
-const postLogin = (url, { username, password }) => {
+const postLogin = (url, data) => {
   const formData = new FormData();
-  formData.set('username', username);
-  formData.set('password', password);
+  formData.set('username', data.username);
+  formData.set('password', data.password);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
