@@ -172,17 +172,6 @@ class Header extends Component {
 
               <LanguageDropdown />
 
-              <div className="dropdown d-none d-lg-inline-block ml-1">
-                <button
-                  type="button"
-                  onClick={this.toggleFullscreen}
-                  className="btn header-item noti-icon waves-effect"
-                  data-toggle="fullscreen"
-                >
-                  <i className="bx bx-fullscreen"></i>
-                </button>
-              </div>
-
               <NotificationDropdown />
               <ProfileMenu />
 
