@@ -9,7 +9,7 @@ import {
 } from './actionTypes';
 
 const INIT_STATE = {
-  error: 'sdsd',
+  error: '',
   loading: false,
 };
 

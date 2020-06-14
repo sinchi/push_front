@@ -10,11 +10,12 @@ import {
   Label,
   Button,
   Spinner,
+  Alert,
 } from 'reactstrap';
 
 // Redux
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 // actions
 import { addCompany } from '../../store/actions';
@@ -28,6 +29,7 @@ import Breadcrumbs from '../../components/Common/Breadcrumb';
 //i18n
 import { withNamespaces } from 'react-i18next';
 import AvInput from 'availity-reactstrap-validation/lib/AvInput';
+import Dropzone from 'react-dropzone';
 
 class CompaniesCreate extends Component {
   constructor(props) {
@@ -36,15 +38,40 @@ class CompaniesCreate extends Component {
 
     // handleValidSubmit
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
+    this.handleAcceptedFiles.bind(this);
   }
 
   // handleValidSubmit
   handleValidSubmit(event, values) {
-    this.props.addCompany(values, this.props.history);
+    const company = Object.assign({}, values, {
+      logo: this.state.selectedFiles[0],
+    });
+    this.props.addCompany(company, this.props.history);
   }
 
+  handleAcceptedFiles = (files) => {
+    files.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        formattedSize: this.formatBytes(file.size),
+      })
+    );
+
+    this.setState({ selectedFiles: files });
+  };
+
+  formatBytes = (bytes, decimals = 2) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  };
+
   render() {
-    const { t, loading } = this.props;
+    const { t, loading, error } = this.props;
     return (
       <React.Fragment>
         <div className="page-content">
@@ -63,6 +90,9 @@ class CompaniesCreate extends Component {
                       {t('companies.add_company')}
                     </CardTitle>
                     <AvForm onValidSubmit={this.handleValidSubmit}>
+                      {error ? (
+                        <Alert color="danger">{t(`errors.${error}`)}</Alert>
+                      ) : null}
                       <FormGroup className="mb-4" row>
                         <Label
                           htmlFor="companyname"
@@ -113,6 +143,74 @@ class CompaniesCreate extends Component {
                             type="checkbox"
                             style={{ marginLeft: 0 }}
                           />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup className="mb-4" row>
+                        <Label className="col-form-label col-lg-2">
+                          {t('companies.logo')}
+                        </Label>
+                        <Col lg="10">
+                          <Dropzone
+                            onDrop={(acceptedFiles) =>
+                              this.handleAcceptedFiles(acceptedFiles)
+                            }
+                          >
+                            {({ getRootProps, getInputProps }) => (
+                              <div className="dropzone">
+                                <div
+                                  className="dz-message needsclick"
+                                  {...getRootProps()}
+                                >
+                                  <input {...getInputProps()} />
+                                  <div className="dz-message needsclick">
+                                    <div className="mb-3">
+                                      <i className="display-4 text-muted bx bxs-cloud-upload"></i>
+                                    </div>
+                                    <h4>{t('companies.files')}</h4>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </Dropzone>
+                          <div
+                            className="dropzone-previews mt-3"
+                            id="file-previews"
+                          >
+                            {this.state.selectedFiles &&
+                              this.state.selectedFiles.map((f, i) => {
+                                return (
+                                  <Card
+                                    className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                                    key={i + '-file'}
+                                  >
+                                    <div className="p-2">
+                                      <Row className="align-items-center">
+                                        <Col className="col-auto">
+                                          <img
+                                            data-dz-thumbnail=""
+                                            height="80"
+                                            className="avatar-sm rounded bg-light"
+                                            alt={f.name}
+                                            src={f.preview}
+                                          />
+                                        </Col>
+                                        <Col>
+                                          <Link
+                                            to="#"
+                                            className="text-muted font-weight-bold"
+                                          >
+                                            {f.name}
+                                          </Link>
+                                          <p className="mb-0">
+                                            <strong>{f.formattedSize}</strong>
+                                          </p>
+                                        </Col>
+                                      </Row>
+                                    </div>
+                                  </Card>
+                                );
+                              })}
+                          </div>
                         </Col>
                       </FormGroup>
                       <Row className="justify-content-end">

@@ -29,6 +29,8 @@
     "address": "Adresse",
     "address_placeholder": "Veuillez Saisir l'adresse d'entreprise",
     "enabled": "Active",
+    "logo": "Logo",
+    "files": "Glisser votre logo ici ou cliquer sur charger",
     "add_button": "Ajouter"
   },
   "errors": {
@@ -39,7 +41,9 @@
     },
     "companies": {
       "name": "Le nom ne doit pas etre vide"
-    }
+    },
+    "500": "Un problème interne dans nos serveurs, Veuillez réssayer ultérieurement",
+    "401": "Vous n'étes pas authorisé pour faire cette action"
   }
 
 }

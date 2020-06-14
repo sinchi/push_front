@@ -12,11 +12,21 @@ import {
 //Include Both Helper File with needed methods
 import { postCompany, getListCompanies } from './services';
 
+//Import toBase64 helper function
+import { getFile } from '../../helpers/toBase64';
+
 function* addCompanyHandler({ payload: { company, history } }) {
   try {
-    const response = yield call(postCompany, '/company/create', {
-      company,
+    const { base64StringFile } = yield call(getFile, company.logo);
+    const companyWithLogo = Object.assign({}, company, {
+      logo: base64StringFile,
     });
+    console.log({ companyWithLogo });
+    const response = yield call(
+      postCompany,
+      '/company/create',
+      companyWithLogo
+    );
     yield put(addCompanySuccess(response.data));
 
     history.push('/companies');

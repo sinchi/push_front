@@ -76,28 +76,22 @@ class SidebarContent extends Component {
           <ul className="metismenu list-unstyled" id="side-menu">
             <li className="menu-title">{this.props.t('Menu')}</li>
             <li>
-              <Link to="/#" className="waves-effect">
+              <Link to="/dashboard" className="waves-effect">
                 <i className="bx bx-home-circle"></i>
-                <span className="badge badge-pill badge-info float-right">
-                  03
-                </span>
                 <span>{t('Dashboards')}</span>
               </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="/dashboard">{t('dashboard.home')}</Link>
-                </li>
-                <li>
-                  <Link to="/companies">
-                    {t('dashboard.company', { count: 3 })}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/#">
-                    {this.props.t('dashboard.application', { count: 3 })}
-                  </Link>
-                </li>
-              </ul>
+
+              <Link to="/companies" className="waves-effect">
+                <i className="bx bx-buildings"></i>
+                <span>{t('dashboard.company', { count: 3 })}</span>
+              </Link>
+
+              <Link to="/applications" className="waves-effect">
+                <i className="bx bx-store"></i>
+                <span>
+                  {this.props.t('dashboard.application', { count: 3 })}
+                </span>
+              </Link>
             </li>
           </ul>
         </div>

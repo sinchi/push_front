@@ -5,7 +5,7 @@ const { token } = sessionStorage.getItem('authUser')
   : '';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-const postCompany = (url, { company }) => {
+const postCompany = (url, company) => {
   return axios
     .post(url, company)
     .then((response) => {
@@ -14,12 +14,12 @@ const postCompany = (url, { company }) => {
         throw new Error(JSON.stringify(response.data.errors));
       }
       if (response.status === 401 || response.status === 500)
-        throw response.data;
+        throw response.status;
 
       return response.data;
     })
     .catch((err) => {
-      throw err.message;
+      throw err.request.status;
     });
 };
 

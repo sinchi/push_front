@@ -9,6 +9,8 @@ import {
   Badge,
 } from 'reactstrap';
 
+import imgDefault from '../../assets/images/companies/img-4.png';
+
 class CardCompany extends Component {
   render() {
     const { companies } = this.props;
@@ -22,7 +24,11 @@ class CardCompany extends Component {
                   <Media>
                     <div className="avatar-md mr-4">
                       <span className="avatar-title rounded-circle bg-light text-danger font-size-16">
-                        <img src={company.img} alt="" height="30" />
+                        <img
+                          src={company.logo ? company.logo : imgDefault}
+                          alt=""
+                          height="30"
+                        />
                       </span>
                     </div>
 
