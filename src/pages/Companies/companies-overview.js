@@ -10,6 +10,7 @@ import {
   Media,
   Table,
   Spinner,
+  Button,
 } from 'reactstrap';
 
 //Import Breadcrumb
@@ -141,7 +142,11 @@ class CompaniesOverview extends Component {
     getCompanyById(id);
   }
   render() {
-    const { loading, error, company, t } = this.props;
+    const { loading, error, company, t, location, match } = this.props;
+    const { pathname } = location;
+    const { path } = match;
+    console.log({ props: this.props });
+    const id = parseInt(pathname.split('/')[2]);
     if (!company)
       return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
@@ -149,11 +154,18 @@ class CompaniesOverview extends Component {
         <div className="page-content">
           <Container fluid>
             {/* Render Breadcrumbs */}
+            <div className="float-right" style={{ marginTop: '-50px' }}>
+              <Link to={`${path}/edit/${id}`}>
+                <Button color="primary">{t('edit')}</Button>
+              </Link>{' '}
+              <Link to={`${path}/delete/${id}`}>
+                <Button color="danger">{t('delete')}</Button>
+              </Link>
+            </div>
             <Breadcrumbs
               title={t('dashboard.company', { count: 0 })}
-              breadcrumbItem={!loading ? company[0].name : ''}
+              breadcrumbItem={!loading ? company.name : ''}
             />
-
             <Row>
               <Col lg="8">
                 <Card>
@@ -276,7 +288,6 @@ class CompaniesOverview extends Component {
                 </Card>
               </Col>
             </Row>
-
             <Row>
               <Col lg="4">
                 <Card>

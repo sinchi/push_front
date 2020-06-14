@@ -1,7 +1,12 @@
 import { takeEvery, fork, put, all, call } from 'redux-saga/effects';
 
 // Company Redux States
-import { ADD_COMPANY, LIST_COMPANIES, GET_COMPANY_BY_ID } from './actionTypes';
+import {
+  ADD_COMPANY,
+  LIST_COMPANIES,
+  GET_COMPANY_BY_ID,
+  EDIT_COMPANY,
+} from './actionTypes';
 import {
   addCompanySuccess,
   addCompanyFailed,
@@ -9,6 +14,8 @@ import {
   listCompaniesFailed,
   getCompanyByIdFailed,
   getCompanyByIdSuccess,
+  editCompanySuccess,
+  editCompanyFailed,
 } from './actions';
 
 //Include Both Helper File with needed methods
@@ -38,6 +45,23 @@ function* addCompanyHandler({ payload: { company, history } }) {
   }
 }
 
+function* editCompanyHandler({ payload: { company, history } }) {
+  try {
+    const { base64StringFile } = yield call(getFile, company.logo);
+    const companyWithLogo = Object.assign({}, company, {
+      logo: base64StringFile,
+    });
+    console.log({ companyWithLogo });
+    const response = yield call(postCompany, '/company/update', company);
+    yield put(editCompanySuccess(response.data));
+
+    history.push('/companies');
+  } catch (error) {
+    console.log({ error });
+    yield put(editCompanyFailed(error));
+  }
+}
+
 function* listCompaniesHandler() {
   try {
     const response = yield call(getListCompanies, '/compagnies');
@@ -57,7 +81,11 @@ function* getCompanyByIdHandler({ payload }) {
 }
 
 export function* watchAddCompany() {
-  yield takeEvery(ADD_COMPANY, addCompanyHandler);
+  yield takeEvery(ADD_COMPANY, editCompanyHandler);
+}
+
+export function* watchEditCompany() {
+  yield takeEvery(EDIT_COMPANY, addCompanyHandler);
 }
 
 export function* watchListCompanies() {
@@ -71,6 +99,7 @@ export function* watchGetCompanyById() {
 function* companiesSaga() {
   yield all([
     fork(watchAddCompany),
+    fork(watchEditCompany),
     fork(watchListCompanies),
     fork(watchGetCompanyById),
   ]);

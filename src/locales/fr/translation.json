@@ -1,5 +1,7 @@
 {
   "back": "Revenir",
+  "edit": "Modifier",
+  "delete": "Supprimer",
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",
@@ -24,6 +26,7 @@
   },
   "companies": {
     "add_company": "Ajouter une entreprise",
+    "edit_company": "Modifier une entreprise",
     "company_name": "Nom",
     "company_placeholder": "Veuillez Saisir le nom d'entreprise",
     "address": "Adresse",
@@ -32,6 +35,7 @@
     "logo": "Logo",
     "files": "Glisser votre logo ici ou cliquer sur charger",
     "add_button": "Ajouter",
+    "edit_button": "Modifier",
     "company_overview": "Consulter Entreprise"
   },
   "errors": {

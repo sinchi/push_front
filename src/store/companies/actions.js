@@ -8,8 +8,12 @@ import {
   GET_COMPANY_BY_ID,
   GET_COMPANY_BY_ID_SUCCESS,
   GET_COMPANY_BY_ID_FAILED,
+  EDIT_COMPANY,
+  EDIT_COMPANY_SUCCESS,
+  EDIT_COMPANY_FAILED,
 } from './actionTypes';
 
+/////////// ADD COMPANY \\\\\\\\\\\\\\
 export const addCompany = (company, history) => ({
   type: ADD_COMPANY,
   payload: {
@@ -27,6 +31,29 @@ export const addCompanyFailed = (error) => ({
   type: ADD_COMPANY_FAILED,
   payload: error,
 });
+
+/////////// END ADD COMPANY \\\\\\\\\\\\\\
+
+/////////// EDIT COMPANY \\\\\\\\\\\\\\
+export const editCompany = (company, history) => ({
+  type: EDIT_COMPANY,
+  payload: {
+    company,
+    history,
+  },
+});
+
+export const editCompanySuccess = (company) => ({
+  type: EDIT_COMPANY_SUCCESS,
+  payload: company,
+});
+
+export const editCompanyFailed = (error) => ({
+  type: EDIT_COMPANY_FAILED,
+  payload: error,
+});
+
+/////////// END EDIT COMPANY \\\\\\\\\\\\\\
 
 export const listCompanies = () => ({
   type: LIST_COMPANIES,

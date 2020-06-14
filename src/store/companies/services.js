@@ -46,7 +46,7 @@ const getCompanyById = (url, id) => {
     .then((response) => {
       if (response.status === 401 || response.status === 500)
         throw response.data;
-      return response.data;
+      return response.data[0];
     })
     .catch((error) => {
       throw error.message;

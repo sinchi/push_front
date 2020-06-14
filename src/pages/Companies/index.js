@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import CompaniesGrid from './companies-grid';
 import CompaniesCreate from './companies-create';
+import CompaniesEdit from './companies-edit';
 import CompaniesOverview from './companies-overview';
 
 import { Button } from 'reactstrap';
@@ -20,13 +21,13 @@ class Companies extends Component {
           <div className="clearfix" style={{ padding: '.5rem' }}>
             {url !== window.location.pathname && (
               <Link to={`${path}`}>
-                <Button className="btn btn-secondary float-left">
+                <Button color="secondary" className="float-left">
                   {t('back')}
                 </Button>
               </Link>
             )}
             <Link to={`${path}/create`}>
-              <Button className="btn btn-success float-right">
+              <Button color="primary" className="float-right">
                 {t('companies.add_company')}
               </Button>
             </Link>
@@ -39,6 +40,10 @@ class Companies extends Component {
             <Route path={`${path}/create`}>
               <CompaniesCreate />
             </Route>
+            <Route path={`${path}/edit/:id`}>
+              <CompaniesEdit {...this.props} />
+            </Route>
+            <Route path={`${path}/delete/:id`}></Route>
             <Route path={`${path}/:id`}>
               <CompaniesOverview {...this.props} />
             </Route>
