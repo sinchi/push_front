@@ -2,6 +2,7 @@
   "back": "Revenir",
   "edit": "Modifier",
   "delete": "Supprimer",
+  "confirm": "Confirmer",
   "cancel": "Annuler",
   "login": {
     "welcome_back": "Bon Retour",
@@ -28,6 +29,8 @@
   "companies": {
     "add_company": "Ajouter une entreprise",
     "edit_company": "Modifier une entreprise",
+    "delete_company": "Supprimer {{company}} ",
+    "delete_message": "Est ce que vous étes sure de supprimer {{ company }} ?",
     "company_name": "Nom",
     "company_placeholder": "Veuillez Saisir le nom d'entreprise",
     "address": "Adresse",

@@ -174,9 +174,13 @@ class CompaniesOverview extends Component {
           {this.state.confirmDelete && (
             <ConfirmModal
               show={this.state.confirmDelete}
-              title="Delete Company"
-              content="Are you sure to delete this company ?"
+              title={t('companies.delete_company', { company: company.name })}
+              content={t('companies.delete_message', {
+                company: company.name,
+              })}
               answer={this.answer}
+              confirmTextButton={t('confirm')}
+              cancelTextButton={t('cancel')}
             />
           )}
           <Container fluid>

@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const ConfirmModal = (props) => {
-  const { className, show, title, content, answer } = props;
+  const {
+    className,
+    show,
+    title,
+    content,
+    answer,
+    cancelTextButton,
+    confirmTextButton,
+  } = props;
 
   const [modal, setModal] = useState(show);
 
@@ -20,13 +28,13 @@ const ConfirmModal = (props) => {
         <ModalBody>{content}</ModalBody>
         <ModalFooter>
           <Button
-            color="primary"
+            color="danger"
             onClick={(e) => {
               toggle();
               answer('confirm');
             }}
           >
-            valider
+            {confirmTextButton}
           </Button>{' '}
           <Button
             onClick={(e) => {
@@ -35,7 +43,7 @@ const ConfirmModal = (props) => {
             }}
             color="secondary"
           >
-            Cancel
+            {cancelTextButton}
           </Button>
         </ModalFooter>
       </Modal>
