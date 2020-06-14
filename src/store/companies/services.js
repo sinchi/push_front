@@ -1,11 +1,14 @@
 import axios from '../../api/axios';
 
-const { token } = sessionStorage.getItem('authUser')
-  ? JSON.parse(sessionStorage.getItem('authUser'))
-  : '';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+const initAuthorization = () => {
+  const { token } = sessionStorage.getItem('authUser')
+    ? JSON.parse(sessionStorage.getItem('authUser'))
+    : '';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
 
 const postCompany = (url, company) => {
+  initAuthorization();
   return axios
     .post(url, company)
     .then((response) => {
@@ -23,7 +26,26 @@ const postCompany = (url, company) => {
     });
 };
 
+const deleteCompany = (url) => {
+  initAuthorization();
+  return axios
+    .delete(url)
+    .then((response) => {
+      if (response.data.errors) {
+        throw new Error(JSON.stringify(response.data.errors));
+      }
+      if (response.status === 401 || response.status === 500)
+        throw response.status;
+
+      return response.data;
+    })
+    .catch((err) => {
+      throw err.request.status;
+    });
+};
+
 const getListCompanies = (url) => {
+  initAuthorization();
   return axios
     .get(url)
     .then((response) => {
@@ -37,6 +59,7 @@ const getListCompanies = (url) => {
 };
 
 const getCompanyById = (url, id) => {
+  initAuthorization();
   return axios
     .get(url, {
       params: {
@@ -53,4 +76,4 @@ const getCompanyById = (url, id) => {
     });
 };
 
-export { postCompany, getListCompanies, getCompanyById };
+export { postCompany, getListCompanies, getCompanyById, deleteCompany };

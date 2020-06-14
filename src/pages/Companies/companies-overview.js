@@ -16,6 +16,10 @@ import {
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 import ReactApexChart from 'react-apexcharts';
+
+//Import Confirm modal
+import ConfirmModal from './confirm-modal';
+
 //Import Image
 import img1 from '../../assets/images/companies/img-1.png';
 import avatar1 from '../../assets/images/users/avatar-1.jpg';
@@ -24,7 +28,7 @@ import avatar3 from '../../assets/images/users/avatar-3.jpg';
 import avatar4 from '../../assets/images/users/avatar-4.jpg';
 
 //Import action for company
-import { getCompanyById } from '../../store/companies/actions';
+import { getCompanyById, deleteCompany } from '../../store/companies/actions';
 
 //Import redux
 import { connect } from 'react-redux';
@@ -36,6 +40,7 @@ class CompaniesOverview extends Component {
   constructor() {
     super();
     this.state = {
+      confirmDelete: false,
       options: {
         chart: {
           height: 500,
@@ -133,6 +138,7 @@ class CompaniesOverview extends Component {
         { name: 'Veltrix admin.Zip', size: '2.25 MB', link: '#' },
       ],
     };
+    this.answer = this.answer.bind(this);
   }
 
   componentDidMount() {
@@ -141,26 +147,50 @@ class CompaniesOverview extends Component {
     const id = parseInt(pathname.split('/')[2]);
     getCompanyById(id);
   }
+
+  answer(rep) {
+    const { location, deleteCompany, history } = this.props;
+    const { pathname } = location;
+    const id = parseInt(pathname.split('/')[2]);
+    console.log(rep);
+    if (rep === 'confirm') {
+      // delete company
+      console.log(rep);
+      deleteCompany(id, history);
+    }
+    this.setState({ confirmDelete: false });
+  }
+
   render() {
     const { loading, error, company, t, location, match } = this.props;
     const { pathname } = location;
     const { path } = match;
-    console.log({ props: this.props });
     const id = parseInt(pathname.split('/')[2]);
     if (!company)
       return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
       <React.Fragment>
         <div className="page-content">
+          {this.state.confirmDelete && (
+            <ConfirmModal
+              show={this.state.confirmDelete}
+              title="Delete Company"
+              content="Are you sure to delete this company ?"
+              answer={this.answer}
+            />
+          )}
           <Container fluid>
             {/* Render Breadcrumbs */}
             <div className="float-right" style={{ marginTop: '-50px' }}>
               <Link to={`${path}/edit/${id}`}>
                 <Button color="primary">{t('edit')}</Button>
               </Link>{' '}
-              <Link to={`${path}/delete/${id}`}>
-                <Button color="danger">{t('delete')}</Button>
-              </Link>
+              <Button
+                onClick={(e) => this.setState({ confirmDelete: true })}
+                color="danger"
+              >
+                {t('delete')}
+              </Button>
             </div>
             <Breadcrumbs
               title={t('dashboard.company', { count: 0 })}
@@ -454,6 +484,6 @@ const mapStateToProps = (state) => {
   return { loading, error, company };
 };
 
-export default connect(mapStateToProps, { getCompanyById })(
+export default connect(mapStateToProps, { getCompanyById, deleteCompany })(
   withNamespaces()(CompaniesOverview)
 );

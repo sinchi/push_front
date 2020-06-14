@@ -12,6 +12,9 @@ import {
   EDIT_COMPANY_FAILED,
   EDIT_COMPANY_SUCCESS,
   EDIT_COMPANY,
+  DELETE_COMPANY,
+  DELETE_COMPANY_SUCCESS,
+  DELETE_COMPANY_FAILED,
 } from './actionTypes';
 import { getCompanyByIdFailed } from './actions';
 
@@ -56,6 +59,26 @@ const Company = (state = INIT_STATE, action) => {
       };
       break;
     case EDIT_COMPANY_FAILED:
+      state = {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+      break;
+    case DELETE_COMPANY:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case DELETE_COMPANY_SUCCESS:
+      state = {
+        ...state,
+        company: action.payload,
+        loading: false,
+      };
+      break;
+    case DELETE_COMPANY_FAILED:
       state = {
         ...state,
         error: action.payload,

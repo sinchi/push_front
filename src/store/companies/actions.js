@@ -11,6 +11,9 @@ import {
   EDIT_COMPANY,
   EDIT_COMPANY_SUCCESS,
   EDIT_COMPANY_FAILED,
+  DELETE_COMPANY_SUCCESS,
+  DELETE_COMPANY,
+  DELETE_COMPANY_FAILED,
 } from './actionTypes';
 
 /////////// ADD COMPANY \\\\\\\\\\\\\\
@@ -35,11 +38,12 @@ export const addCompanyFailed = (error) => ({
 /////////// END ADD COMPANY \\\\\\\\\\\\\\
 
 /////////// EDIT COMPANY \\\\\\\\\\\\\\
-export const editCompany = (company, history) => ({
+export const editCompany = (company, history, id) => ({
   type: EDIT_COMPANY,
   payload: {
     company,
     history,
+    id,
   },
 });
 
@@ -53,7 +57,28 @@ export const editCompanyFailed = (error) => ({
   payload: error,
 });
 
-/////////// END EDIT COMPANY \\\\\\\\\\\\\\
+/////////// END EDIT COMPANY \\\\\\\\\\\\\
+
+/////////// DELETE COMPANY \\\\\\\\\\\\\\
+export const deleteCompany = (id, history) => ({
+  type: DELETE_COMPANY,
+  payload: {
+    history,
+    id,
+  },
+});
+
+export const deleteCompanySuccess = (company) => ({
+  type: DELETE_COMPANY_SUCCESS,
+  payload: company,
+});
+
+export const deleteCompanyFailed = (error) => ({
+  type: DELETE_COMPANY_FAILED,
+  payload: error,
+});
+
+/////////// END DELETE COMPANY \\\\\\\\\\\\\\
 
 export const listCompanies = () => ({
   type: LIST_COMPANIES,

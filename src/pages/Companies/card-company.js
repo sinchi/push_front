@@ -14,7 +14,6 @@ import imgDefault from '../../assets/images/companies/img-4.png';
 class CardCompany extends Component {
   render() {
     const { companies, path } = this.props;
-    console.log({ props: this.props });
     return (
       <React.Fragment>
         {companies &&

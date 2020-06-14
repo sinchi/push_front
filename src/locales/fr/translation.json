@@ -2,6 +2,7 @@
   "back": "Revenir",
   "edit": "Modifier",
   "delete": "Supprimer",
+  "cancel": "Annuler",
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",

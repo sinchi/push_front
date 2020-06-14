@@ -44,7 +44,7 @@ class CompaniesCreate extends Component {
   // handleValidSubmit
   handleValidSubmit(event, values) {
     const company = Object.assign({}, values, {
-      logo: this.state.selectedFiles[0],
+      logo: this.state.selectedFiles ? this.state.selectedFiles[0] : '',
     });
     this.props.addCompany(company, this.props.history);
   }

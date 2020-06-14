@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
 // actions
-import { addCompany, getCompanyById } from '../../store/actions';
+import { editCompany, getCompanyById } from '../../store/actions';
 
 // availity-reactstrap-validation
 import { AvForm, AvField } from 'availity-reactstrap-validation';
@@ -48,10 +48,11 @@ class CompaniesEdit extends Component {
 
   // handleValidSubmit
   handleValidSubmit(event, values) {
-    const company = Object.assign({}, values, {
+    /* const company = Object.assign({}, values, {
       logo: this.state.selectedFiles[0],
-    });
-    this.props.addCompany(company, this.props.history);
+    }); */
+    const { editCompany, history, match } = this.props;
+    editCompany(values, history, match.params.id);
   }
 
   handleAcceptedFiles = (files) => {
@@ -232,6 +233,12 @@ class CompaniesEdit extends Component {
                           >
                             {t('companies.edit_button')}
                             {loading && <Spinner color="info" size="sm" />}
+                          </Button>{' '}
+                          <Button
+                            onClick={(e) => this.props.history.goBack()}
+                            color="secondary"
+                          >
+                            {t('cancel')}
                           </Button>
                         </Col>
                       </Row>
@@ -253,7 +260,7 @@ const mapStatetoProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStatetoProps, { addCompany, getCompanyById })(
+  connect(mapStatetoProps, { editCompany, getCompanyById })(
     withNamespaces()(CompaniesEdit)
   )
 );

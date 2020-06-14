@@ -6,6 +6,7 @@ import {
   LIST_COMPANIES,
   GET_COMPANY_BY_ID,
   EDIT_COMPANY,
+  DELETE_COMPANY,
 } from './actionTypes';
 import {
   addCompanySuccess,
@@ -16,26 +17,29 @@ import {
   getCompanyByIdSuccess,
   editCompanySuccess,
   editCompanyFailed,
+  deleteCompanySuccess,
+  deleteCompanyFailed,
 } from './actions';
 
 //Include Both Helper File with needed methods
-import { postCompany, getListCompanies, getCompanyById } from './services';
+import {
+  postCompany,
+  getListCompanies,
+  getCompanyById,
+  deleteCompany,
+} from './services';
 
 //Import toBase64 helper function
-import { getFile } from '../../helpers/toBase64';
+// import { getFile } from '../../helpers/toBase64';
 
 function* addCompanyHandler({ payload: { company, history } }) {
   try {
-    const { base64StringFile } = yield call(getFile, company.logo);
+    /* const { base64StringFile } = yield call(getFile, company.logo);
     const companyWithLogo = Object.assign({}, company, {
       logo: base64StringFile,
     });
-    console.log({ companyWithLogo });
-    const response = yield call(
-      postCompany,
-      '/company/create',
-      companyWithLogo
-    );
+     */
+    const response = yield call(postCompany, '/company/create', company);
     yield put(addCompanySuccess(response.data));
 
     history.push('/companies');
@@ -45,20 +49,32 @@ function* addCompanyHandler({ payload: { company, history } }) {
   }
 }
 
-function* editCompanyHandler({ payload: { company, history } }) {
+function* editCompanyHandler({ payload: { company, history, id } }) {
   try {
-    const { base64StringFile } = yield call(getFile, company.logo);
+    /*  const { base64StringFile } = yield call(getFile, company.logo);
     const companyWithLogo = Object.assign({}, company, {
       logo: base64StringFile,
     });
-    console.log({ companyWithLogo });
-    const response = yield call(postCompany, '/company/update', company);
+    console.log({ companyWithLogo }); */
+    const response = yield call(postCompany, `/company/update/${id}`, company);
     yield put(editCompanySuccess(response.data));
 
-    history.push('/companies');
+    history.push(`/companies/${id}`);
   } catch (error) {
     console.log({ error });
     yield put(editCompanyFailed(error));
+  }
+}
+
+function* deleteCompanyHandler({ payload: { history, id } }) {
+  try {
+    const response = yield call(deleteCompany, `/company/delete/${id}`);
+    yield put(deleteCompanySuccess(response.data));
+
+    history.push(`/companies`);
+  } catch (error) {
+    console.log({ error });
+    yield put(deleteCompanyFailed(error));
   }
 }
 
@@ -81,11 +97,15 @@ function* getCompanyByIdHandler({ payload }) {
 }
 
 export function* watchAddCompany() {
-  yield takeEvery(ADD_COMPANY, editCompanyHandler);
+  yield takeEvery(ADD_COMPANY, addCompanyHandler);
 }
 
 export function* watchEditCompany() {
-  yield takeEvery(EDIT_COMPANY, addCompanyHandler);
+  yield takeEvery(EDIT_COMPANY, editCompanyHandler);
+}
+
+export function* watchDeleteCompany() {
+  yield takeEvery(DELETE_COMPANY, deleteCompanyHandler);
 }
 
 export function* watchListCompanies() {
@@ -100,6 +120,7 @@ function* companiesSaga() {
   yield all([
     fork(watchAddCompany),
     fork(watchEditCompany),
+    fork(watchDeleteCompany),
     fork(watchListCompanies),
     fork(watchGetCompanyById),
   ]);
