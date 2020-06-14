@@ -5,7 +5,7 @@ import { LOGIN_USER, LOGOUT_USER } from './actionTypes';
 import { loginSuccess, apiError } from './actions';
 
 //Include Both Helper File with needed methods
-import { postLogin } from '../../../helpers/fakebackend_helper';
+import { postLogin } from '../services';
 
 function* loginUser({ payload: { user, history } }) {
   try {

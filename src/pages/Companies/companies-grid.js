@@ -8,11 +8,17 @@ import {
   PaginationLink,
 } from 'reactstrap';
 
+//Import redux
+import { connect } from 'react-redux';
+
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 
 //Import Cards
 import CardCompany from './card-company';
+
+// Import actions
+import { listCompanies } from '../../store/companies/actions';
 
 //Import Image
 import img1 from '../../assets/images/companies/img-1.png';
@@ -153,7 +159,13 @@ class CompaniesGrid extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.listCompanies();
+  }
+
   render() {
+    const { companies, loading, error } = this.props;
+
     const { t } = this.props;
     return (
       <React.Fragment>
@@ -166,35 +178,7 @@ class CompaniesGrid extends Component {
 
           <Row>
             {/* Import Cards */}
-            <CardCompany projects={this.state.projects} />
-          </Row>
-
-          <Row>
-            <Col lg="12">
-              <Pagination className="pagination pagination-rounded justify-content-center mt-2 mb-5">
-                <PaginationItem disabled>
-                  <PaginationLink previous href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem active>
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">4</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">5</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink next href="#" />
-                </PaginationItem>
-              </Pagination>
-            </Col>
+            <CardCompany companies={companies} />
           </Row>
         </Container>
       </React.Fragment>
@@ -202,4 +186,15 @@ class CompaniesGrid extends Component {
   }
 }
 
-export default withNamespaces()(CompaniesGrid);
+const mapPropsToState = (state) => {
+  const { loading, companies, error } = state.Companies;
+  return {
+    loading,
+    companies,
+    error,
+  };
+};
+
+export default connect(mapPropsToState, { listCompanies })(
+  withNamespaces()(CompaniesGrid)
+);
