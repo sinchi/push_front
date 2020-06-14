@@ -77,6 +77,8 @@ class CompaniesCreate extends Component {
                             type="text"
                             className="form-control"
                             placeholder={t('companies.company_placeholder')}
+                            required
+                            errorMessage={t('errors.companies.name')}
                           />
                         </Col>
                       </FormGroup>

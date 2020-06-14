@@ -36,6 +36,9 @@
       "auth_failed": "Votre Login ou Mot de passe est incorrect !",
       "username": "Veuillez saisir votre username",
       "password": "Veuillez saisir votre mot de passe"
+    },
+    "companies": {
+      "name": "Le nom ne doit pas etre vide"
     }
   }
 
