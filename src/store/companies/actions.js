@@ -5,6 +5,9 @@ import {
   LIST_COMPANIES,
   LIST_COMPANIES_SUCCESS,
   LIST_COMPANIES_FAILED,
+  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_ID_SUCCESS,
+  GET_COMPANY_BY_ID_FAILED,
 } from './actionTypes';
 
 export const addCompany = (company, history) => ({
@@ -36,5 +39,20 @@ export const listCompaniesSuccess = (companies) => ({
 
 export const listCompaniesFailed = (error) => ({
   type: LIST_COMPANIES_FAILED,
+  payload: error,
+});
+
+export const getCompanyById = (id) => ({
+  type: GET_COMPANY_BY_ID,
+  payload: id,
+});
+
+export const getCompanyByIdSuccess = (company) => ({
+  type: GET_COMPANY_BY_ID_SUCCESS,
+  payload: company,
+});
+
+export const getCompanyByIdFailed = (error) => ({
+  type: GET_COMPANY_BY_ID_FAILED,
   payload: error,
 });

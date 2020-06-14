@@ -9,6 +9,7 @@ import {
   CardTitle,
   Media,
   Table,
+  Spinner,
 } from 'reactstrap';
 
 //Import Breadcrumb
@@ -20,6 +21,15 @@ import avatar1 from '../../assets/images/users/avatar-1.jpg';
 import avatar2 from '../../assets/images/users/avatar-2.jpg';
 import avatar3 from '../../assets/images/users/avatar-3.jpg';
 import avatar4 from '../../assets/images/users/avatar-4.jpg';
+
+//Import action for company
+import { getCompanyById } from '../../store/companies/actions';
+
+//Import redux
+import { connect } from 'react-redux';
+
+//Import i18n
+import { withNamespaces } from 'react-i18next';
 
 class CompaniesOverview extends Component {
   constructor() {
@@ -123,13 +133,26 @@ class CompaniesOverview extends Component {
       ],
     };
   }
+
+  componentDidMount() {
+    const { location, getCompanyById } = this.props;
+    const { pathname } = location;
+    const id = parseInt(pathname.split('/')[2]);
+    getCompanyById(id);
+  }
   render() {
+    const { loading, error, company, t } = this.props;
+    if (!company)
+      return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
       <React.Fragment>
         <div className="page-content">
           <Container fluid>
             {/* Render Breadcrumbs */}
-            <Breadcrumbs title="Projects" breadcrumbItem="Projects Overview" />
+            <Breadcrumbs
+              title={t('dashboard.company', { count: 0 })}
+              breadcrumbItem={!loading ? company[0].name : ''}
+            />
 
             <Row>
               <Col lg="8">
@@ -415,4 +438,11 @@ class CompaniesOverview extends Component {
   }
 }
 
-export default CompaniesOverview;
+const mapStateToProps = (state) => {
+  const { loading, error, company } = state.Companies;
+  return { loading, error, company };
+};
+
+export default connect(mapStateToProps, { getCompanyById })(
+  withNamespaces()(CompaniesOverview)
+);

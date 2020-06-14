@@ -31,7 +31,8 @@
     "enabled": "Active",
     "logo": "Logo",
     "files": "Glisser votre logo ici ou cliquer sur charger",
-    "add_button": "Ajouter"
+    "add_button": "Ajouter",
+    "company_overview": "Consulter Entreprise"
   },
   "errors": {
     "login": {

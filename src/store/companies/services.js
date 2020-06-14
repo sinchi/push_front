@@ -36,4 +36,21 @@ const getListCompanies = (url) => {
     });
 };
 
-export { postCompany, getListCompanies };
+const getCompanyById = (url, id) => {
+  return axios
+    .get(url, {
+      params: {
+        id,
+      },
+    })
+    .then((response) => {
+      if (response.status === 401 || response.status === 500)
+        throw response.data;
+      return response.data;
+    })
+    .catch((error) => {
+      throw error.message;
+    });
+};
+
+export { postCompany, getListCompanies, getCompanyById };

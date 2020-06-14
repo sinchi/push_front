@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import CompaniesGrid from './companies-grid';
 import CompaniesCreate from './companies-create';
+import CompaniesOverview from './companies-overview';
 
 import { Button } from 'reactstrap';
 
@@ -37,6 +38,9 @@ class Companies extends Component {
             </Route>
             <Route path={`${path}/create`}>
               <CompaniesCreate />
+            </Route>
+            <Route path={`${path}/:id`}>
+              <CompaniesOverview {...this.props} />
             </Route>
           </Switch>
         </div>

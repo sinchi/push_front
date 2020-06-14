@@ -13,7 +13,8 @@ import imgDefault from '../../assets/images/companies/img-4.png';
 
 class CardCompany extends Component {
   render() {
-    const { companies } = this.props;
+    const { companies, path } = this.props;
+    console.log({ props: this.props });
     return (
       <React.Fragment>
         {companies &&
@@ -34,7 +35,10 @@ class CardCompany extends Component {
 
                     <Media className="overflow-hidden" body>
                       <h5 className="text-truncate font-size-15">
-                        <Link to="#" className="text-dark">
+                        <Link
+                          to={`${path}/${company.id}`}
+                          className="text-dark"
+                        >
                           {company.name}
                         </Link>
                       </h5>

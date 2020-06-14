@@ -6,7 +6,11 @@ import {
   LIST_COMPANIES,
   LIST_COMPANIES_SUCCESS,
   LIST_COMPANIES_FAILED,
+  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_ID_SUCCESS,
+  GET_COMPANY_BY_ID_FAILED,
 } from './actionTypes';
+import { getCompanyByIdFailed } from './actions';
 
 const INIT_STATE = {
   error: '',
@@ -49,6 +53,26 @@ const Company = (state = INIT_STATE, action) => {
       };
       break;
     case LIST_COMPANIES_FAILED:
+      state = {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      break;
+    case GET_COMPANY_BY_ID:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case GET_COMPANY_BY_ID_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        company: action.payload,
+      };
+      break;
+    case getCompanyByIdFailed:
       state = {
         ...state,
         loading: false,
