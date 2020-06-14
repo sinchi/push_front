@@ -10,7 +10,12 @@ const ConfirmModal = (props) => {
 
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal
+        isOpen={modal}
+        onClosed={(e) => answer('cancel')}
+        toggle={toggle}
+        className={className}
+      >
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>{content}</ModalBody>
         <ModalFooter>
