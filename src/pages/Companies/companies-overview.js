@@ -162,7 +162,7 @@ class CompaniesOverview extends Component {
   }
 
   render() {
-    const { loading, error, company, t, location, match } = this.props;
+    const { loading, company, t, location, match } = this.props;
     const { pathname } = location;
     const { path } = match;
     const id = parseInt(pathname.split('/')[2]);

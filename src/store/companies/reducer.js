@@ -16,7 +16,6 @@ import {
   DELETE_COMPANY_SUCCESS,
   DELETE_COMPANY_FAILED,
 } from './actionTypes';
-import { getCompanyByIdFailed } from './actions';
 
 const INIT_STATE = {
   error: '',
@@ -118,7 +117,7 @@ const Company = (state = INIT_STATE, action) => {
         company: action.payload,
       };
       break;
-    case getCompanyByIdFailed:
+    case GET_COMPANY_BY_ID_FAILED:
       state = {
         ...state,
         loading: false,
