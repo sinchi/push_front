@@ -23,6 +23,7 @@ const ConfirmModal = (props) => {
         onClosed={(e) => answer('cancel')}
         toggle={toggle}
         className={className}
+        backdrop={false}
       >
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
         <ModalBody>{content}</ModalBody>
