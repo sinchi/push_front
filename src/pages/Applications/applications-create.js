@@ -29,27 +29,35 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 
+import CompanySelect from '../../components/Common/CompanySelect';
+
 //i18n
 import { withNamespaces } from 'react-i18next';
-import AvInput from 'availity-reactstrap-validation/lib/AvInput';
 import Dropzone from 'react-dropzone';
 
 class ApplicationsCreate extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { selectedCompanyId: null };
 
     // handleValidSubmit
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleAcceptedFiles.bind(this);
+    this.handleSelectGroup = this.handleSelectGroup.bind(this);
   }
+
+  //Select
+  handleSelectGroup = ({ value, name }) => {
+    this.setState({ selectedCompanyId: value });
+  };
 
   // handleValidSubmit
   handleValidSubmit(event, values) {
     const application = Object.assign({}, values, {
       logo: this.state.selectedFiles ? this.state.selectedFiles[0] : '',
+      companyId: this.state.selectedCompanyId,
     });
-    this.props.addCompany(application, this.props.history);
+    this.props.addApplication(application, this.props.history);
   }
 
   handleAcceptedFiles = (files) => {
@@ -82,7 +90,7 @@ class ApplicationsCreate extends Component {
             {/* Render Breadcrumbs */}
             <Breadcrumbs
               title={t('dashboard.application', { count: 3 })}
-              breadcrumbItem={t('companies.add_application')}
+              breadcrumbItem={t('applications.add_application')}
             />
 
             <Row>
@@ -99,50 +107,34 @@ class ApplicationsCreate extends Component {
                           htmlFor="applicationname"
                           className="col-form-label col-lg-2"
                         >
-                          {t('applications.application_name')}
+                          {t('name')}
                         </Label>
                         <Col lg="10">
                           <AvField
-                            id="companyname"
+                            id="applicationname"
                             name="name"
                             type="text"
                             className="form-control"
-                            placeholder={t('companies.company_placeholder')}
+                            placeholder={t(
+                              'applications.application_placeholder'
+                            )}
                             required
-                            errorMessage={t('errors.companies.name')}
+                            errorMessage={t('errors.name')}
                           />
                         </Col>
                       </FormGroup>
                       <FormGroup className="mb-4" row>
                         <Label
-                          htmlFor="companyaddress"
+                          htmlFor="companynme"
                           className="col-form-label col-lg-2"
                         >
-                          {t('address')}
+                          {t('dashboard.company')}
                         </Label>
                         <Col lg="10">
-                          <AvInput
-                            className="form-control"
-                            id="companyaddress"
-                            rows="3"
-                            name="address"
-                            placeholder={t('companies.address_placeholder')}
-                          ></AvInput>
-                        </Col>
-                      </FormGroup>
-                      <FormGroup className="mb-4" row>
-                        <Label
-                          htmlFor="companyenabled"
-                          className="col-form-label col-lg-2"
-                        >
-                          {t('enabled')}
-                        </Label>
-                        <Col lg="10">
-                          <AvField
-                            id="companyenabled"
-                            name="enabled"
-                            type="checkbox"
-                            style={{ marginLeft: 0 }}
+                          <CompanySelect
+                            id="companyname"
+                            name="name"
+                            handleSelectGroup={this.handleSelectGroup}
                           />
                         </Col>
                       </FormGroup>
@@ -239,12 +231,12 @@ class ApplicationsCreate extends Component {
 }
 
 const mapStatetoProps = (state) => {
-  const { error, loading } = state.Companies;
+  const { error, loading } = state.Applications;
   return { error, loading };
 };
 
 export default compose(
-  connect(mapStatetoProps, { addCompany }),
+  connect(mapStatetoProps, { addApplication }),
   withNamespaces(),
   withRouter
-)(CompaniesCreate);
+)(ApplicationsCreate);

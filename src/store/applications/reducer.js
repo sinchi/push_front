@@ -33,7 +33,7 @@ const Company = (state = INIT_STATE, action) => {
     case ADD_APPLICATION_SUCCESS:
       state = {
         ...state,
-        company: action.payload,
+        application: action.payload,
         loading: false,
       };
       break;

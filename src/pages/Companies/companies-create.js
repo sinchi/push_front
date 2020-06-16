@@ -99,7 +99,7 @@ class CompaniesCreate extends Component {
                           htmlFor="companyname"
                           className="col-form-label col-lg-2"
                         >
-                          {t('companies.company_name')}
+                          {t('name')}
                         </Label>
                         <Col lg="10">
                           <AvField
@@ -109,7 +109,7 @@ class CompaniesCreate extends Component {
                             className="form-control"
                             placeholder={t('companies.company_placeholder')}
                             required
-                            errorMessage={t('errors.companies.name')}
+                            errorMessage={t('errors.name')}
                           />
                         </Col>
                       </FormGroup>

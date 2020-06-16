@@ -110,7 +110,7 @@ class CompaniesEdit extends Component {
                           htmlFor="companyname"
                           className="col-form-label col-lg-2"
                         >
-                          {t('companies.company_name')}
+                          {t('name')}
                         </Label>
                         <Col lg="10">
                           <AvField

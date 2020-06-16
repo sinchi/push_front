@@ -10,6 +10,7 @@
   "files": "Glisser votre logo ici ou cliquer sur charger",
   "add_button": "Ajouter",
   "edit_button": "Modifier",
+  "name": "Nom",
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",
@@ -38,29 +39,26 @@
     "edit_company": "Modifier {{company}}",
     "delete_company": "Supprimer {{company}} ",
     "delete_message": "Est ce que vous étes sure de supprimer {{ company }} ?",
-    "company_name": "Nom",
     "company_placeholder": "Veuillez Saisir le nom d'entreprise",
     "address_placeholder": "Veuillez Saisir l'adresse d'entreprise",
-    "company_overview": "Consulter Entreprise"
+    "company_overview": "Consulter Entreprise",
+    "select": "Veuillez selectionner une entreprise"
   },
   "applications": {
     "add_application": "Ajouter une application",
     "edit_application": "Modifier {{application}}",
     "delete_application": "Supprimer {{application}} ",
     "delete_message": "Est ce que vous étes sure de supprimer {{ application }} ?",
-    "application_name": "Nom",
-    "appliation_placeholder": "Veuillez Saisir le nom d'application",
+    "application_placeholder": "Veuillez Saisir le nom d'application",
     "address_placeholder": "Veuillez Saisir l'adresse d'application",
     "company_overview": "Consulter Application"
   },
   "errors": {
+    "name": "Le nom ne doit pas etre vide",
     "login": {
       "auth_failed": "Votre Login ou Mot de passe est incorrect !",
       "username": "Veuillez saisir votre username",
       "password": "Veuillez saisir votre mot de passe"
-    },
-    "companies": {
-      "name": "Le nom ne doit pas etre vide"
     },
     "500": "Un problème interne dans nos serveurs, Veuillez réssayer ultérieurement",
     "401": "Vous n'étes pas authorisé pour faire cette action"

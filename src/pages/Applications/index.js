@@ -4,8 +4,8 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { compose } from 'redux';
 
 import ApplicationGrid from './applications-grid';
-/* import CompaniesCreate from './companies-create';
-import CompaniesEdit from './companies-edit';
+import ApplicationsCreate from './applications-create';
+/*import CompaniesEdit from './companies-edit';
 import CompaniesOverview from './companies-overview'; */
 
 import { Button } from 'reactstrap';
@@ -39,9 +39,10 @@ class Applications extends Component {
             <Route exact path={path}>
               <ApplicationGrid />
             </Route>
-            {/* <Route path={`${path}/create`}>
-              <CompaniesCreate />
+            <Route path={`${path}/create`}>
+              <ApplicationsCreate />
             </Route>
+            {/*
             <Route path={`${path}/edit/:id`}>
               <CompaniesEdit {...this.props} />
             </Route>

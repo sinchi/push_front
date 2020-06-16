@@ -30,23 +30,25 @@ import {
 } from './services';
 
 //Import toBase64 helper function
-// import { getFile } from '../../helpers/toBase64';
+import { getFile } from '../../helpers/toBase64';
 
 function* addApplicationHandler({ payload: { application, history } }) {
   try {
-    /* const { base64StringFile } = yield call(getFile, company.logo);
-    const companyWithLogo = Object.assign({}, company, {
+    const base64logo = application.logo
+      ? yield call(getFile, application.logo)
+      : '';
+    const base64StringFile = base64logo ? base64logo.base64StringFile : '';
+    const applicationyWithLogo = Object.assign({}, application, {
       logo: base64StringFile,
     });
-     */
     const response = yield call(
       postApplication,
       '/application/create',
-      application
+      applicationyWithLogo
     );
     yield put(addApplicationSuccess(response.data));
 
-    history.push('/companies');
+    history.push('/applications');
   } catch (error) {
     console.log({ error });
     yield put(addApplicationFailed(error));
