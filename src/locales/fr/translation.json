@@ -10,6 +10,7 @@
   "files": "Glisser votre logo ici ou cliquer sur charger",
   "add_button": "Ajouter",
   "edit_button": "Modifier",
+  "expired_date": "Date d'expiration",
   "name": "Nom",
   "login": {
     "welcome_back": "Bon Retour",

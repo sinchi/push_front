@@ -31,6 +31,11 @@ import Breadcrumbs from '../../components/Common/Breadcrumb';
 
 import CompanySelect from '../../components/Common/CompanySelect';
 
+//Date picker
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import fr from 'date-fns/locale/fr';
+
 //i18n
 import { withNamespaces } from 'react-i18next';
 import Dropzone from 'react-dropzone';
@@ -38,12 +43,26 @@ import Dropzone from 'react-dropzone';
 class ApplicationsCreate extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedCompanyId: null };
+    this.state = {
+      selectedCompanyId: null,
+      expirationDate: null,
+    };
 
     // handleValidSubmit
     this.handleValidSubmit = this.handleValidSubmit.bind(this);
     this.handleAcceptedFiles.bind(this);
     this.handleSelectGroup = this.handleSelectGroup.bind(this);
+    this.handleDatePicker = this.handleDatePicker.bind(this);
+  }
+
+  componentWillMount() {
+    // register local for date picker
+    registerLocale('fr', fr);
+  }
+
+  //DatePicker
+  handleDatePicker(date) {
+    this.setState({ expirationDate: date });
   }
 
   //Select
@@ -56,6 +75,7 @@ class ApplicationsCreate extends Component {
     const application = Object.assign({}, values, {
       logo: this.state.selectedFiles ? this.state.selectedFiles[0] : '',
       companyId: this.state.selectedCompanyId,
+      expirationDate: this.state.expirationDate,
     });
     this.props.addApplication(application, this.props.history);
   }
@@ -135,6 +155,22 @@ class ApplicationsCreate extends Component {
                             id="companyname"
                             name="name"
                             handleSelectGroup={this.handleSelectGroup}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup className="mb-4" row>
+                        <Label
+                          htmlFor="applicationExpireDate"
+                          className="col-form-label col-lg-2"
+                        >
+                          {t('expired_date')}
+                        </Label>
+                        <Col lg="10">
+                          <DatePicker
+                            className="form-control"
+                            selected={this.state.expirationDate}
+                            onChange={this.handleDatePicker}
+                            locale="fr"
                           />
                         </Col>
                       </FormGroup>
