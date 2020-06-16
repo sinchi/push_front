@@ -25,7 +25,6 @@ class CompanySelect extends Component {
   handleSelectedCompany(company) {
     const { handleSelectGroup } = this.props;
     handleSelectGroup(company);
-    console.log({ company });
     this.setState({ selectedGroup: company });
   }
 
