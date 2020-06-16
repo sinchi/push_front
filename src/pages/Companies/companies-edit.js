@@ -14,6 +14,7 @@ import {
 } from 'reactstrap';
 
 // Redux
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -48,11 +49,11 @@ class CompaniesEdit extends Component {
 
   // handleValidSubmit
   handleValidSubmit(event, values) {
-    /* const company = Object.assign({}, values, {
-      logo: this.state.selectedFiles[0],
-    }); */
+    const company = Object.assign({}, values, {
+      logo: this.state.selectedFiles ? this.state.selectedFiles[0] : '',
+    });
     const { editCompany, history, match } = this.props;
-    editCompany(values, history, match.params.id);
+    editCompany(company, history, match.params.id);
   }
 
   handleAcceptedFiles = (files) => {
@@ -259,8 +260,8 @@ const mapStatetoProps = (state) => {
   return { error, loading, company };
 };
 
-export default withRouter(
-  connect(mapStatetoProps, { editCompany, getCompanyById })(
-    withNamespaces()(CompaniesEdit)
-  )
-);
+export default compose(
+  withRouter,
+  connect(mapStatetoProps, { editCompany, getCompanyById }),
+  withNamespaces()
+)(CompaniesEdit);

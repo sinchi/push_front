@@ -32,6 +32,7 @@ import { getCompanyById, deleteCompany } from '../../store/companies/actions';
 
 //Import redux
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 //Import i18n
 import { withNamespaces } from 'react-i18next';
@@ -488,6 +489,7 @@ const mapStateToProps = (state) => {
   return { loading, error, company };
 };
 
-export default connect(mapStateToProps, { getCompanyById, deleteCompany })(
-  withNamespaces()(CompaniesOverview)
-);
+export default compose(
+  connect(mapStateToProps, { getCompanyById, deleteCompany }),
+  withNamespaces()
+)(CompaniesOverview);

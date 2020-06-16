@@ -30,16 +30,21 @@ import {
 } from './services';
 
 //Import toBase64 helper function
-// import { getFile } from '../../helpers/toBase64';
+import { getFile } from '../../helpers/toBase64';
 
 function* addCompanyHandler({ payload: { company, history } }) {
   try {
-    /* const { base64StringFile } = yield call(getFile, company.logo);
+    const base64logo = company.logo ? yield call(getFile, company.logo) : '';
+    const base64StringFile = base64logo ? base64logo.base64StringFile : '';
     const companyWithLogo = Object.assign({}, company, {
       logo: base64StringFile,
     });
-     */
-    const response = yield call(postCompany, '/company/create', company);
+
+    const response = yield call(
+      postCompany,
+      '/company/create',
+      companyWithLogo
+    );
     yield put(addCompanySuccess(response.data));
 
     history.push('/companies');
@@ -51,12 +56,16 @@ function* addCompanyHandler({ payload: { company, history } }) {
 
 function* editCompanyHandler({ payload: { company, history, id } }) {
   try {
-    /*  const { base64StringFile } = yield call(getFile, company.logo);
+    const base64logo = company.logo ? yield call(getFile, company.logo) : '';
+    const base64StringFile = base64logo ? base64logo.base64StringFile : '';
     const companyWithLogo = Object.assign({}, company, {
       logo: base64StringFile,
     });
-    console.log({ companyWithLogo }); */
-    const response = yield call(postCompany, `/company/update/${id}`, company);
+    const response = yield call(
+      postCompany,
+      `/company/update/${id}`,
+      companyWithLogo
+    );
     yield put(editCompanySuccess(response.data));
 
     history.push(`/companies/${id}`);

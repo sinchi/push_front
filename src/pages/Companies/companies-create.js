@@ -15,6 +15,9 @@ import {
 
 // Redux
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+//Import Router
 import { withRouter, Link } from 'react-router-dom';
 
 // actions
@@ -242,6 +245,8 @@ const mapStatetoProps = (state) => {
   return { error, loading };
 };
 
-export default withRouter(
-  connect(mapStatetoProps, { addCompany })(withNamespaces()(CompaniesCreate))
-);
+export default compose(
+  connect(mapStatetoProps, { addCompany }),
+  withNamespaces(),
+  withRouter
+)(CompaniesCreate);

@@ -3,6 +3,7 @@ import { Container, Row, Spinner } from 'reactstrap';
 
 //Import redux
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
@@ -55,6 +56,8 @@ const mapPropsToState = (state) => {
     error,
   };
 };
-export default connect(mapPropsToState, { listCompanies })(
-  withNamespaces()(withRouter(CompaniesGrid))
-);
+export default compose(
+  connect(mapPropsToState, { listCompanies }),
+  withNamespaces(),
+  withRouter
+)(CompaniesGrid);

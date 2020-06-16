@@ -25,7 +25,11 @@ class CardCompany extends Component {
                     <div className="avatar-md mr-4">
                       <span className="avatar-title rounded-circle bg-light text-danger font-size-16">
                         <img
-                          src={company.logo ? company.logo : imgDefault}
+                          src={
+                            company.logo
+                              ? process.env.REACT_APP_BASE_URL + company.logo
+                              : imgDefault
+                          }
                           alt=""
                           height="30"
                         />
