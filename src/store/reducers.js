@@ -10,6 +10,8 @@ import ForgetPassword from './auth/forgetpwd/reducer';
 
 // Companies
 import Companies from './companies/reducer';
+// Applications
+import Applications from './applications/reducer';
 
 const rootReducer = combineReducers({
   // public
@@ -18,6 +20,7 @@ const rootReducer = combineReducers({
   Account,
   ForgetPassword,
   Companies,
+  Applications,
 });
 
 export default rootReducer;

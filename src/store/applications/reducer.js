@@ -94,7 +94,7 @@ const Company = (state = INIT_STATE, action) => {
       state = {
         ...state,
         loading: false,
-        companies: action.payload,
+        applications: action.payload,
       };
       break;
     case LIST_APPLICATIONS_FAILED:
@@ -114,7 +114,7 @@ const Company = (state = INIT_STATE, action) => {
       state = {
         ...state,
         loading: false,
-        company: action.payload,
+        application: action.payload,
       };
       break;
     case GET_APPLICATION_BY_ID_FAILED:

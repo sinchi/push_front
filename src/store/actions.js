@@ -7,3 +7,6 @@ export * from './auth/forgetpwd/actions';
 
 // Comapnies module
 export * from './companies/actions';
+
+// Applications module
+export * from './applications/actions';

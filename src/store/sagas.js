@@ -8,6 +8,8 @@ import LayoutSaga from './layout/saga';
 
 import CompaniesSaga from './companies/saga';
 
+import AppliactionsSaga from './applications/saga';
+
 export default function* rootSaga() {
   yield all([
     //public
@@ -16,5 +18,6 @@ export default function* rootSaga() {
     ForgetSaga(),
     LayoutSaga(),
     CompaniesSaga(),
+    AppliactionsSaga(),
   ]);
 }

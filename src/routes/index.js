@@ -12,10 +12,13 @@ import Dashboard from '../pages/Dashboard/index';
 
 // Company
 import Companies from '../pages/Companies';
+// Application
+import Applications from '../pages/Applications';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/companies', component: Companies },
+  { path: '/applications', component: Applications },
 
   // this route should be at the end of all other routes
   { path: '/', exact: true, component: () => <Redirect to="/dashboard" /> },

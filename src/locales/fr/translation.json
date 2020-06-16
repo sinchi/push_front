@@ -4,6 +4,12 @@
   "delete": "Supprimer",
   "confirm": "Confirmer",
   "cancel": "Annuler",
+  "address": "Adresse",
+  "logo": "Logo",
+  "enabled": "Active",
+  "files": "Glisser votre logo ici ou cliquer sur charger",
+  "add_button": "Ajouter",
+  "edit_button": "Modifier",
   "login": {
     "welcome_back": "Bon Retour",
     "sign_in_to_continue": "Authentifiez-vous pour continue au Systéme de Push Notification",
@@ -24,7 +30,8 @@
     "application": "Application",
     "application_plural": "Applications",
     "home": "Acceuil",
-    "company_grid": "Liste des entreprises mode (grid)"
+    "company_grid": "Liste des entreprises",
+    "application_grid": "Liste des applications"
   },
   "companies": {
     "add_company": "Ajouter une entreprise",
@@ -33,14 +40,18 @@
     "delete_message": "Est ce que vous étes sure de supprimer {{ company }} ?",
     "company_name": "Nom",
     "company_placeholder": "Veuillez Saisir le nom d'entreprise",
-    "address": "Adresse",
     "address_placeholder": "Veuillez Saisir l'adresse d'entreprise",
-    "enabled": "Active",
-    "logo": "Logo",
-    "files": "Glisser votre logo ici ou cliquer sur charger",
-    "add_button": "Ajouter",
-    "edit_button": "Modifier",
     "company_overview": "Consulter Entreprise"
+  },
+  "applications": {
+    "add_application": "Ajouter une application",
+    "edit_application": "Modifier {{application}}",
+    "delete_application": "Supprimer {{application}} ",
+    "delete_message": "Est ce que vous étes sure de supprimer {{ application }} ?",
+    "application_name": "Nom",
+    "appliation_placeholder": "Veuillez Saisir le nom d'application",
+    "address_placeholder": "Veuillez Saisir l'adresse d'application",
+    "company_overview": "Consulter Application"
   },
   "errors": {
     "login": {

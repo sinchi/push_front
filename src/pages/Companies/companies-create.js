@@ -89,9 +89,7 @@ class CompaniesCreate extends Component {
               <Col lg="12">
                 <Card>
                   <CardBody>
-                    {/* <CardTitle className="mb-4">
-                      {t('companies.add_company')}
-                    </CardTitle> */}
+                    <CardTitle className="mb-4"></CardTitle>
                     <AvForm onValidSubmit={this.handleValidSubmit}>
                       {error ? (
                         <Alert color="danger">{t(`errors.${error}`)}</Alert>
@@ -120,7 +118,7 @@ class CompaniesCreate extends Component {
                           htmlFor="companyaddress"
                           className="col-form-label col-lg-2"
                         >
-                          {t('companies.address')}
+                          {t('address')}
                         </Label>
                         <Col lg="10">
                           <AvInput
@@ -137,7 +135,7 @@ class CompaniesCreate extends Component {
                           htmlFor="companyenabled"
                           className="col-form-label col-lg-2"
                         >
-                          {t('companies.enabled')}
+                          {t('enabled')}
                         </Label>
                         <Col lg="10">
                           <AvField
@@ -150,7 +148,7 @@ class CompaniesCreate extends Component {
                       </FormGroup>
                       <FormGroup className="mb-4" row>
                         <Label className="col-form-label col-lg-2">
-                          {t('companies.logo')}
+                          {t('logo')}
                         </Label>
                         <Col lg="10">
                           <Dropzone
@@ -169,7 +167,7 @@ class CompaniesCreate extends Component {
                                     <div className="mb-3">
                                       <i className="display-4 text-muted bx bxs-cloud-upload"></i>
                                     </div>
-                                    <h4>{t('companies.files')}</h4>
+                                    <h4>{t('files')}</h4>
                                   </div>
                                 </div>
                               </div>
@@ -223,7 +221,7 @@ class CompaniesCreate extends Component {
                             color="primary"
                             disabled={loading}
                           >
-                            {t('companies.add_button')}
+                            {t('add_button')}
                             {loading && <Spinner color="info" size="sm" />}
                           </Button>
                         </Col>
