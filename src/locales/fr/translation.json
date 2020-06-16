@@ -28,7 +28,7 @@
   },
   "companies": {
     "add_company": "Ajouter une entreprise",
-    "edit_company": "Modifier une entreprise",
+    "edit_company": "Modifier {{company}}",
     "delete_company": "Supprimer {{company}} ",
     "delete_message": "Est ce que vous étes sure de supprimer {{ company }} ?",
     "company_name": "Nom",

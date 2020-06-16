@@ -57,6 +57,7 @@ class CompaniesEdit extends Component {
   }
 
   handleAcceptedFiles = (files) => {
+    console.log({ files });
     files.map((file) =>
       Object.assign(file, {
         preview: URL.createObjectURL(file),
@@ -83,12 +84,14 @@ class CompaniesEdit extends Component {
       return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
       <React.Fragment>
-        <div className="page-content">
+        <div>
           <Container fluid>
             {/* Render Breadcrumbs */}
             <Breadcrumbs
               title={t('dashboard.company', { count: 3 })}
-              breadcrumbItem={t('companies.edit_company')}
+              breadcrumbItem={t('companies.edit_company', {
+                company: company.name,
+              })}
             />
 
             <Row>
@@ -96,7 +99,7 @@ class CompaniesEdit extends Component {
                 <Card>
                   <CardBody>
                     <CardTitle className="mb-4">
-                      {t('companies.edit_company')}
+                      {t('companies.edit_company', { company: company.name })}
                     </CardTitle>
                     <AvForm onValidSubmit={this.handleValidSubmit}>
                       {error ? (

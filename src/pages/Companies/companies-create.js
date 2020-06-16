@@ -77,7 +77,7 @@ class CompaniesCreate extends Component {
     const { t, loading, error } = this.props;
     return (
       <React.Fragment>
-        <div className="page-content">
+        <div>
           <Container fluid>
             {/* Render Breadcrumbs */}
             <Breadcrumbs
@@ -89,9 +89,9 @@ class CompaniesCreate extends Component {
               <Col lg="12">
                 <Card>
                   <CardBody>
-                    <CardTitle className="mb-4">
+                    {/* <CardTitle className="mb-4">
                       {t('companies.add_company')}
-                    </CardTitle>
+                    </CardTitle> */}
                     <AvForm onValidSubmit={this.handleValidSubmit}>
                       {error ? (
                         <Alert color="danger">{t(`errors.${error}`)}</Alert>
