@@ -10,3 +10,6 @@ export * from './companies/actions';
 
 // Applications module
 export * from './applications/actions';
+
+// Language module
+export * from './translation/actions';

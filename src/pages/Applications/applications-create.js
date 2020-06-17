@@ -34,10 +34,13 @@ import CompanySelect from '../../components/Common/CompanySelect';
 //Date picker
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import fr from 'date-fns/locale/fr';
 
 //i18n
 import { withNamespaces } from 'react-i18next';
+
+import fr from 'date-fns/locale/fr';
+import eng from 'date-fns/locale/en-us';
+
 import Dropzone from 'react-dropzone';
 
 class ApplicationsCreate extends Component {
@@ -55,11 +58,12 @@ class ApplicationsCreate extends Component {
     this.handleDatePicker = this.handleDatePicker.bind(this);
   }
 
-  componentWillMount() {
+  componentDidUpdate(prevProps) {
     // register local for date picker
-    registerLocale('fr', fr);
+    const { language } = this.props;
+    if (language === 'fr') registerLocale('fr', fr);
+    else if (language === 'eng') registerLocale('en-us', eng);
   }
-
   //DatePicker
   handleDatePicker(date) {
     this.setState({ expirationDate: date });
@@ -102,7 +106,7 @@ class ApplicationsCreate extends Component {
   };
 
   render() {
-    const { t, loading, error } = this.props;
+    const { t, loading, error, language } = this.props;
     return (
       <React.Fragment>
         <div>
@@ -170,7 +174,7 @@ class ApplicationsCreate extends Component {
                             className="form-control"
                             selected={this.state.expirationDate}
                             onChange={this.handleDatePicker}
-                            locale="fr"
+                            locale={language === 'eng' ? 'en-us' : language}
                           />
                         </Col>
                       </FormGroup>
@@ -266,13 +270,14 @@ class ApplicationsCreate extends Component {
   }
 }
 
-const mapStatetoProps = (state) => {
+const mapStateToProps = (state) => {
   const { error, loading } = state.Applications;
-  return { error, loading };
+  const { language } = state.Languages;
+  return { error, loading, language };
 };
 
 export default compose(
-  connect(mapStatetoProps, { addApplication }),
+  connect(mapStateToProps, { addApplication }),
   withNamespaces(),
   withRouter
 )(ApplicationsCreate);

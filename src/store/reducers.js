@@ -12,6 +12,8 @@ import ForgetPassword from './auth/forgetpwd/reducer';
 import Companies from './companies/reducer';
 // Applications
 import Applications from './applications/reducer';
+// languages
+import Languages from './translation/reducer';
 
 const rootReducer = combineReducers({
   // public
@@ -21,6 +23,7 @@ const rootReducer = combineReducers({
   ForgetPassword,
   Companies,
   Applications,
+  Languages,
 });
 
 export default rootReducer;

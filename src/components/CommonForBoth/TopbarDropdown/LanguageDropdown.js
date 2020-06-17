@@ -7,7 +7,6 @@ import {
 } from 'reactstrap';
 
 //i18n
-import i18n from '../../../i18n';
 import { withNamespaces } from 'react-i18next';
 
 // falgs
@@ -17,6 +16,13 @@ import germany from '../../../assets/images/flags/germany.jpg';
 import italy from '../../../assets/images/flags/italy.jpg';
 import russia from '../../../assets/images/flags/russia.jpg';
 import french from '../../../assets/images/flags/french.jpg';
+
+//Redux
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+//actions
+import { setLanguage } from '../../../store/translation/actions';
 
 class LanguageDropdown extends Component {
   constructor(props) {
@@ -31,8 +37,7 @@ class LanguageDropdown extends Component {
   }
 
   changeLanguageAction = (lng) => {
-    //set language as i18n
-    i18n.changeLanguage(lng);
+    this.props.setLanguage(lng);
 
     if (lng === 'sp') this.setState({ lng: 'Spanish', flag: spain });
     else if (lng === 'gr') this.setState({ lng: 'German', flag: germany });
@@ -84,7 +89,7 @@ class LanguageDropdown extends Component {
               <img src={usFlag} alt="Skote" className="mr-1" height="12" />
               <span className="align-middle">English</span>
             </DropdownItem>
-            <DropdownItem
+            {/* <DropdownItem
               tag="a"
               href="#"
               onClick={() => this.changeLanguageAction('sp')}
@@ -119,7 +124,7 @@ class LanguageDropdown extends Component {
             >
               <img src={russia} alt="Skote" className="mr-1" height="12" />
               <span className="align-middle">Russian</span>
-            </DropdownItem>
+            </DropdownItem> */}
           </DropdownMenu>
         </Dropdown>
       </React.Fragment>
@@ -127,4 +132,11 @@ class LanguageDropdown extends Component {
   }
 }
 
-export default withNamespaces()(LanguageDropdown);
+const mapStateToProps = (state) => {
+  const { language } = state.Languages;
+  return { language };
+};
+export default compose(
+  withNamespaces(),
+  connect(mapStateToProps, { setLanguage })
+)(LanguageDropdown);
