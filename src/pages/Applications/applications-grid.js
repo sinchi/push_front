@@ -24,9 +24,8 @@ class ApplicationsGrid extends Component {
   }
 
   render() {
-    const { applications } = this.props;
+    const { t, language, applications } = this.props;
 
-    const { t } = this.props;
     if (!applications)
       return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
@@ -43,6 +42,8 @@ class ApplicationsGrid extends Component {
             <CardApplication
               applications={applications}
               path={this.props.match.path}
+              language={language}
+              t={t}
             />
           </Row>
         </Container>
@@ -53,10 +54,12 @@ class ApplicationsGrid extends Component {
 
 const mapPropsToState = (state) => {
   const { loading, applications, error } = state.Applications;
+  const { language } = state.Languages;
   return {
     loading,
     applications,
     error,
+    language,
   };
 };
 export default compose(

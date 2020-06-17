@@ -48,7 +48,7 @@ class ApplicationsCreate extends Component {
     super(props);
     this.state = {
       selectedCompanyId: null,
-      expirationDate: null,
+      expirationDate: new Date(),
     };
 
     // handleValidSubmit
@@ -64,6 +64,12 @@ class ApplicationsCreate extends Component {
     if (language === 'fr') registerLocale('fr', fr);
     else if (language === 'eng') registerLocale('en-us', eng);
   }
+
+  componentWillMount() {
+    // Init DatePicker language
+    registerLocale('fr', fr);
+  }
+
   //DatePicker
   handleDatePicker(date) {
     this.setState({ expirationDate: date });

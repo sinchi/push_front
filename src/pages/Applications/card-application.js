@@ -11,9 +11,24 @@ import {
 
 import imgDefault from '../../assets/images/companies/img-4.png';
 
+import moment from 'moment';
+import 'moment/locale/fr';
+
 class CardApplication extends Component {
+  componentDidUpdate(prevProps) {
+    this.setMomentLocal();
+  }
+
+  setMomentLocal() {
+    const { language } = this.props.language;
+    if (language === 'eng') moment().locale('en');
+    else moment().locale(language);
+  }
+
   render() {
-    const { applications, path } = this.props;
+
+    console.log({ lang: this.props.language });
+    const { applications, path, t } = this.props;
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     return (
       <React.Fragment>
@@ -113,9 +128,10 @@ class CardApplication extends Component {
                       </Badge>
                     </li>
                     <li className="list-inline-item mr-3" id="dueDate">
-                      <i className="bx bx-calendar mr-1"></i> {application.date}
+                      <i className="bx bx-calendar mr-1"></i>{' '}
+                      {moment(application.expirationDate).format('DD MMM YY')}
                       <UncontrolledTooltip placement="top" target="dueDate">
-                        Due Date
+                        {t('expired_date')}
                       </UncontrolledTooltip>
                     </li>
                     <li className="list-inline-item mr-3" id="comments">
