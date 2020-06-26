@@ -5,8 +5,8 @@ import { compose } from 'redux';
 
 import ApplicationGrid from './applications-grid';
 import ApplicationsCreate from './applications-create';
-/*import CompaniesEdit from './companies-edit';
-import CompaniesOverview from './companies-overview'; */
+import ApplicationsEdit from './applications-edit';
+import ApplicationsOverview from './applications-overview';
 
 import { Button } from 'reactstrap';
 
@@ -42,14 +42,14 @@ class Applications extends Component {
             <Route path={`${path}/create`}>
               <ApplicationsCreate />
             </Route>
-            {/*
+
             <Route path={`${path}/edit/:id`}>
-              <CompaniesEdit {...this.props} />
+              <ApplicationsEdit {...this.props} />
             </Route>
-            <Route path={`${path}/delete/:id`}></Route>
+           {/* <Route path={`${path}/delete/:id`}></Route>  */}
             <Route path={`${path}/:id`}>
-              <CompaniesOverview {...this.props} />
-            </Route> */}
+              <ApplicationsOverview {...this.props} />
+            </Route>
           </Switch>
         </div>
       </React.Fragment>

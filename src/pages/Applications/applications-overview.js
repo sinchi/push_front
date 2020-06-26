@@ -27,8 +27,8 @@ import avatar2 from '../../assets/images/users/avatar-2.jpg';
 import avatar3 from '../../assets/images/users/avatar-3.jpg';
 import avatar4 from '../../assets/images/users/avatar-4.jpg';
 
-//Import action for company
-import { getCompanyById, deleteCompany } from '../../store/companies/actions';
+//Import action for application
+import { getApplicationById, deleteApplication } from '../../store/applications/actions';
 
 //Import redux
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ import { compose } from 'redux';
 //Import i18n
 import { withNamespaces } from 'react-i18next';
 
-class CompaniesOverview extends Component {
+class ApplicationsOverview extends Component {
   constructor() {
     super();
     this.state = {
@@ -143,31 +143,31 @@ class CompaniesOverview extends Component {
   }
 
   componentDidMount() {
-    const { location, getCompanyById } = this.props;
+    const { location, getApplicationById } = this.props;
     const { pathname } = location;
     const id = parseInt(pathname.split('/')[2]);
-    getCompanyById(id);
+    getApplicationById(id);
   }
 
   answer(rep) {
-    const { location, deleteCompany, history } = this.props;
+    const { location, deleteApplication, history } = this.props;
     const { pathname } = location;
     const id = parseInt(pathname.split('/')[2]);
     console.log(rep);
     if (rep === 'confirm') {
-      // delete company
+      // delete application
       console.log(rep);
-      deleteCompany(id, history);
+      deleteApplication(id, history);
     }
     this.setState({ confirmDelete: false });
   }
 
   render() {
-    const { loading, company, t, location, match } = this.props;
+    const { loading, application, t, location, match } = this.props;
     const { pathname } = location;
     const { path } = match;
     const id = parseInt(pathname.split('/')[2]);
-    if (!company)
+    if (!application)
       return <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />;
     return (
       <React.Fragment>
@@ -175,9 +175,9 @@ class CompaniesOverview extends Component {
           {this.state.confirmDelete && (
             <ConfirmModal
               show={this.state.confirmDelete}
-              title={t('companies.delete_company', { company: company.name })}
+              title={t('companies.delete_application', { application: application.name })}
               content={t('companies.delete_message', {
-                company: company.name,
+                application: application.name,
               })}
               answer={this.answer}
               confirmTextButton={t('confirm')}
@@ -198,8 +198,8 @@ class CompaniesOverview extends Component {
               </Button>
             </div>
             <Breadcrumbs
-              title={t('dashboard.company', { count: 0 })}
-              breadcrumbItem={!loading ? company.name : ''}
+              title={t('dashboard.application', { count: 0 })}
+              breadcrumbItem={!loading ? application.name : ''}
             />
             <Row>
               <Col lg="8">
@@ -485,11 +485,11 @@ class CompaniesOverview extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { loading, error, company } = state.Companies;
-  return { loading, error, company };
+  const { loading, error, application } = state.Applications;
+  return { loading, error, application };
 };
 
 export default compose(
-  connect(mapStateToProps, { getCompanyById, deleteCompany }),
+  connect(mapStateToProps, { getApplicationById, deleteApplication }),
   withNamespaces()
-)(CompaniesOverview);
+)(ApplicationsOverview);

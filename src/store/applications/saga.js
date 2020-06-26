@@ -57,15 +57,15 @@ function* addApplicationHandler({ payload: { application, history } }) {
 
 function* editApplicationHandler({ payload: { application, history, id } }) {
   try {
-    /*  const { base64StringFile } = yield call(getFile, company.logo);
-    const companyWithLogo = Object.assign({}, company, {
+     const { base64StringFile } = yield call(getFile, application.logo);
+    const applicationWithLogo = Object.assign({}, application, {
       logo: base64StringFile,
     });
-    console.log({ companyWithLogo }); */
+    console.log({ applicationWithLogo });
     const response = yield call(
       postApplication,
       `/application/update/${id}`,
-      application
+      applicationWithLogo
     );
     yield put(editApplicationSuccess(response.data));
 
