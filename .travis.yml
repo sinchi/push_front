@@ -8,7 +8,6 @@ git:
   clone: true
 
 before_install:
-   - git --version
    - docker build -t belghar/push_front -f Dockerfile.dev .
 
 script:

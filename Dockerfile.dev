@@ -4,6 +4,10 @@ WORKDIR '/app'
 
 COPY package.json .
 
+RUN apk add -- update \
+   git \
+   openssh-client
+
 RUN npm install
 
 COPY . .
