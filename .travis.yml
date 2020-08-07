@@ -4,6 +4,8 @@ services:
 language: node_js
 node_js:
   - 12
+git:
+  clone: true
 
 before_install:
    - docker build -t belghar/push_front -f Dockerfile.dev .
