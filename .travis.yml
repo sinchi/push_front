@@ -1,6 +1,9 @@
 sudo: required
 services:
     - docker
+language: node_js
+node_js:
+  - 12
 
 before_install:
    - docker build -t belghar/push_front -f Dockerfile.dev .
