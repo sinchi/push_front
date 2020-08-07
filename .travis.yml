@@ -8,7 +8,7 @@ git:
   clone: true
 
 before_install:
-   - sudo apt-get install git
+   - sudo apt-get -y install git
    - docker build -t belghar/push_front -f Dockerfile.dev .
 
 script:
