@@ -1,0 +1,19 @@
+version: '3'
+services:
+    dev:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        container_name: push_front_dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        ports:
+           - "3000:3000"
+        stdin_open: true
+
+    prod:
+      build: .
+      container_name: push_front_prod
+      ports:
+        - 8080:80
