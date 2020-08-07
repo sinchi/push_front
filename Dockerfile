@@ -2,7 +2,7 @@ FROM node:alpine as builder
 
 WORKDIR '/app'
 
-COPY package.json .
+COPY package*.json ./
 
 RUN apk add --update \
   python \
