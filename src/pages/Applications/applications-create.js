@@ -39,7 +39,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { withNamespaces } from 'react-i18next';
 
 import fr from 'date-fns/locale/fr';
-import eng from 'date-fns/locale/en';
+import eng from 'date-fns/locale/en-US';
 
 import Dropzone from 'react-dropzone';
 
